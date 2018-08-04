@@ -1,0 +1,7 @@
+.flash_msg {
+    background: yellow;
+    width: calc(100% - 100px);
+    height: 20px;
+    text-align: center;
+    margin: 10px auto;
+}
