@@ -1,0 +1,112 @@
+<div class="breadcrumb"> <% make_breadcrumb %> 
+    <%= render_breadcrumbs %>
+</div>
+
+
+<% if flash[:notice].present? %>
+  <p class="flash_msg"><%= flash[:notice] %></p>
+<% end %>
+
+<br>
+<div class="container">
+    <div class="register">
+        <div class="main_title"><h4>Book appointment</h4></div>
+        <% form_for @appointment do |f|  %>
+          <%= f.error_messages%>
+          <%= f.hidden_field :patient_id, :value => @current_user.patient.id%>
+
+          <div class="form-group">
+              <label class="control-label col-sm-2">Appointment date:</label>
+              <div class="col-sm-4">
+                  <div class='input-group date' id='datetimepicker3'>
+                      <%= f.date_select :appointment_date, {:start_year => Date.current.year, :end_year => 2020} ,
+                        html_options = {:class => "form-control", :onchange => "slots_list()"}%>
+                  </div>
+              </div>
+          </div>
+
+
+
+          <div class="form-group">
+              <label for ="department" class="control-label col-sm-2">Department name:</label>
+              <div class="col-sm-4"  id="department">
+                  <%= f.select :department_id, Department.all.collect {|x| [x.department_name, x.id]}, 
+                    {:include_blank => "choose department"}, 
+                    :class => "form-control" , :onchange => "doctor_list(this);"%><br>
+              </div>
+          </div>
+
+          <div class="form-group">
+              <label for="doctor" class="control-label col-sm-2">Doctor name:</label>
+              <div class="col-sm-4" id="doctor">
+                  <%= f.select :doctor_id, [['choose doctor', nil]], {}, :class => "form-control", :onchange => "slots_list();" %><br>
+              </div>
+          </div>
+          <div class="form-group">
+              <label class="control-label col-sm-2" for="slot"> Time:</label>
+              
+              <div class="col-sm-4" id="slot">
+
+                  <%= f.select:slot_id, [['choose slot', nil]], {}, html_options = {:class => "form-control" }%><br/>
+              </div>
+          </div>
+          <%= f.submit "book appointment", :class => "btn btn-success book_appointment" %>
+        <%  end %>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<script>
+  function doctor_list(obj) {
+      if (jQuery(obj).val() != "") {
+
+          jQuery.ajax({
+              url: "/appointments/doctor_list/" + jQuery(obj).val(),
+              type: "GET",
+              dateType: "html",
+              success: function (data) {
+
+//                      $("#doctor").html(data);
+
+              }
+          });
+
+
+
+      }
+  }
+  ;
+</script>
+
+
+<script>
+  function slots_list() {
+      doctor_id = jQuery('#appointment_doctor_id').val();
+      date = jQuery('#appointment_appointment_date_1i').val() + '-' + parseInt(jQuery('#appointment_appointment_date_2i').val()).toPaddedString(2) + '-' + parseInt(jQuery('#appointment_appointment_date_3i').val()).toPaddedString(2);
+      if (doctor_id != "" && date.length == 10) {
+          jQuery.ajax({
+              url: "/appointments/slots_list/" + doctor_id,
+              type: "GET",
+              data: {date: date},
+              dateType: "json",
+              success: function () {
+
+                  //$("#slot").html(data);
+
+              }
+          });
+
+      }
+  }
+
+
+
+</script>
+
+

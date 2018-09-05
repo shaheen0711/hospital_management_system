@@ -1,0 +1,24 @@
+<div class="breadcrumb"> <% make_breadcrumb %> 
+    <%= render_breadcrumbs %>
+</div>
+
+<% if flash[:notice].present? %>
+  <p class="flash_msg"><%= flash[:notice] %></p>
+<% end %>
+
+<% form_for @bed do |f| %>
+  <% f.error_messages %>
+   <div class="form-group">
+      <label class="control-label col-sm-2">Department name:</label>
+          <div class="col-sm-4">
+          <%= f.text_field :bed_number, :class => "form-control" , :placeholder => "enter bed number" %><br>
+          </div>
+  </div>
+   <div class="form-group">
+      <label class="control-label col-sm-2">Department name:</label>
+      <div class="col-sm-4">
+          <%= f.text_field :description, :class => "form-control" , :placeholder => "enter bed description" %><br>
+          <%= f.submit "update", :class => "add" %>
+      </div>
+  </div>
+<% end %>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  patient_id: 
+  doctor_observation: MyText
+  prescription: MyText
+
+two:
+  patient_id: 
+  doctor_observation: MyText
+  prescription: MyText

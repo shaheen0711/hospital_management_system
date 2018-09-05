@@ -1,0 +1,19 @@
+<div class="breadcrumb"> <% make_breadcrumb %> 
+    <%= render_breadcrumbs %>
+</div>
+<% if flash[:notice].present? %>
+  <p class="flash_msg"><%= flash[:notice] %></p>
+<% end %>
+<p> List of all beds</p>
+    <%= button_to "add bed", create_bed_beds_path, :class =>:add  %>
+<table class="table table-striped table-bordered table-condensed">
+    <tr><th>Room id</th> <th>bed number</th><th>description</th><th>Edit/delete</th></tr>
+    <% @beds.each do |bed| %>
+      <tr>
+          <td><%= bed.id%></td>
+          <td><%= bed.bed_number %></td>
+          <td><%= bed.description %></td><td><%= link_to  'edit',  edit_bed_path(bed)%>
+              /<%= link_to  'delete', {:action => "delete_bed", :id => bed.id} %></td>
+      </tr>
+    <% end %>
+</table>

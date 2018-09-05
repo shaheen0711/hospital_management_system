@@ -1,0 +1,30 @@
+<div class="breadcrumb"> <% make_breadcrumb %> 
+    <%= render_breadcrumbs %>
+</div>
+<h3>Add new bed</h3>
+<% if flash[:notice].present? %>
+  <p class="flash_msg"><%= flash[:notice] %></p>
+<% end %>
+
+<% form_for :bed do |f| %>
+  <%  f.error_messages %>
+  <div class="form-group">
+      <label class="control-label col-sm-2">Room number:</label>
+      <div class="col-sm-4">
+          <%= f.select :room_id, Room.all.collect {|x| [x.room_number, x.id]}, {:include_blank => "choose room"}, :class => "form-control" %><br>
+      </div>
+  </div>
+  <div class="form-group">
+      <label class="control-label col-sm-2">Bed number:</label>
+      <div class="col-sm-4">
+          <%= f.text_field :bed_number,  :class => "form-control" %>
+      </div>
+  </div>           
+  <div class="form-group">
+      <label class="control-label col-sm-2">Description :</label>
+      <div class="col-sm-4">
+          <%= f.text_field :description,  :class => "form-control" %><br>
+          <%= f.submit "Add", :class => "add" %>
+      </div>
+  </div> 
+<% end %>

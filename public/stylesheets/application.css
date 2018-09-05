@@ -1,0 +1,168 @@
+.flash_msg {
+    background: #FFC0CB;
+    width: calc(100% - 600px);
+    height: 40px;
+    text-align: center;
+    margin: 10px auto;
+    padding: 10px;
+    border: solid red 2px;
+    border-radius:5px;
+}
+
+.profile {
+    float:right;
+}
+
+.add-doctor {
+    float:right;
+    color:black;
+    border-radius: 5px; 
+    margin: 5px;
+}
+.add {
+    color:gray;
+    border-radius: 5px;
+}
+.create-slot{
+    float:right;
+    color:black;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.search{
+    float:right;
+}
+.reg{
+    float:right;
+}
+
+.login{
+    text-align:center;
+    padding-left: 380px;
+    color:blue;   
+}
+.add-department{
+    float:right;
+    color:black;
+    border-radius: 5px;
+}
+.add-room{
+    float:right;
+    color:black;
+    border-radius: 5px;
+    margin-left:5px;
+}
+.star{
+    color:red;
+}
+
+.bed_allocation_button{
+    float:right;
+}
+.all_patient{
+    float:left;
+    font-size: 20px;
+}
+.room_list{    
+    float:left;
+    font-size:20px;
+}
+.records{
+    float:right;
+    margin-bottom: 10px;
+}
+.edit_records{
+    margin:16px;   
+}
+.main_title{
+    margin:16px;
+}
+
+.manage_department{
+    margin:20px;
+    float:left;
+    width: 227px;
+    border: 2px solid   red;
+    border-radius: 5px;
+    padding: 8px;
+
+}
+.manage_room{
+    margin:20px;
+    float:right;
+    width: 230px;
+    border: 2px solid   red;
+    border-radius: 5px;
+    padding: 10px;
+
+}
+.manage_doctor{
+    margin:20px;
+    float:left;
+    width: 230px;
+    border: 2px solid   red;
+    border-radius: 5px;
+    padding: 10px;
+
+}
+.manage_patient{
+    margin:20px;
+    float:right;
+    width: 230px;
+    border: 2px solid   red;
+    border-radius: 5px;
+    padding: 10px;
+
+}
+.mng_department{
+    font-size:15px;   
+}
+
+.mng_department_link{
+    font-size:20px;
+}
+
+
+.mng_room{
+    font-size:15px;   
+}
+
+.mng_room_link{
+    font-size:20px;
+}
+.mng_doctor{
+    font-size:15px;   
+}
+
+.mng_doctor_link{
+    font-size:20px;
+}
+.mng_patiet{
+    font-size:15px;   
+}
+
+.mng_patient_link{
+    font-size:20px;
+}
+.medical_records{
+    margin:20px;
+    float:left;
+    font-size:20px;
+    border: 2px solid   red;
+    border-radius: 5px;
+    padding: 8px;
+}
+.book_appointment_main{
+    margin:20px;
+    float:left;
+    font-size:20px;
+    border: 2px solid   red;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+.doctor_list_title{    
+    float:left;
+    font-size:20px;
+}

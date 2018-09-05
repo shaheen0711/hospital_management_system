@@ -1,0 +1,28 @@
+<div class="breadcrumb"> <% make_breadcrumb %> 
+    <%= render_breadcrumbs %>
+</div>
+
+<% if flash[:notice].present? %>
+  <p class="flash_msg"><%= flash[:notice] %></p>
+<% end %>
+<br>
+<div>
+    <span class ="room_list">List of rooms</span>
+    <%= button_to 'add bed', create_bed_beds_path, :class => "btn add-room"%>
+    <%= button_to 'add room', add_room_rooms_path, :class => "btn add-room"%>
+    <%= button_to "CSV report" , '/rooms/export_beds', :class => "btn add-room"%>
+</div>
+<br>
+<br>
+<table class="table table-striped table-bordered table-condensed">
+    <tr><th>S.no.</th> <th>Room Number</th><th>Description</th><th>Edit/delete</th></tr>
+    <% @rooms.each_with_index do |room, i| %>
+      <tr>
+          <td><%= i+1 %></td>
+          <td><%=  link_to room.room_number , room_detail_room_path(room)%></td>
+          <td><%= room.description %> </td>
+          <td><%= link_to  'edit', edit_room_path(room) %>/
+              <%= link_to  'delete', {:action => "delete_room", :id => room.id}%></td>
+      </tr>
+    <% end %>
+</table>

@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  date_of_birth: 2018-08-02
+  address: MyString
+  contact_number: MyString
+  email: MyString
+  gender: MyString
+  blood_group: MyString
+
+two:
+  user_id: 1
+  date_of_birth: 2018-08-02
+  address: MyString
+  contact_number: MyString
+  email: MyString
+  gender: MyString
+  blood_group: MyString

@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  department_id: 1
+  qualification: MyString
+  experience: MyString
+  nationality: MyString
+  date_of_birth: 2018-08-02
+  address: MyString
+  contact_number: MyString
+  email: MyString
+  gender: MyString
+
+two:
+  user_id: 1
+  department_id: 1
+  qualification: MyString
+  experience: MyString
+  nationality: MyString
+  date_of_birth: 2018-08-02
+  address: MyString
+  contact_number: MyString
+  email: MyString
+  gender: MyString

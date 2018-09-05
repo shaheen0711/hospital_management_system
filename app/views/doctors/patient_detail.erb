@@ -1,0 +1,28 @@
+<div class="breadcrumb"> <% make_breadcrumb %> 
+    <%= render_breadcrumbs %>
+</div>
+
+<h4>Patient information</h4>
+   <table class="table table-striped table-bordered table-condensed">
+    <tr><td>Patient id</td><td><%= @patient.id%></td></tr>
+    <tr><td>First name</td><td><%= @patient.user.first_name%></td></tr>
+    <tr><td>Last name</td><td><%= @patient.user.last_name%></td></tr>
+    <tr><td>Date of birth</td><td><%= @patient.date_of_birth%></td></tr>
+    <tr><td>Gender</td><td><%= @patient.gender%></td></tr>
+    <tr><td>Blood group</td><td><%= @patient.blood_group %></td></tr>
+    <tr><td>Contact number</td><td><%= @patient.contact_number %></td></tr>
+    <tr><td>email</td><td><%= @patient.email %></td></tr>
+   
+</table>
+<h4>Patient history</h4>
+ <table class="table table-striped table-bordered table-condensed">
+     <tr><th>Record id</th><th>Doctor observation</th> <th>Prescription</th></tr>
+<% @patient.medicalrecords.each do |c| %>
+     
+     <tr><td><%= c.id  %></td>
+          <td><%= c.doctor_observation %></td>
+          <td> <%= c.prescription%></td>
+     </tr>
+    <% end %>
+  </table>
+<%= link_to 'Manage records', patient_medicalrecords_path(@patient) %>

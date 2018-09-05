@@ -1,0 +1,24 @@
+<div class="breadcrumb"> <% make_breadcrumb %> 
+    <%= render_breadcrumbs %>
+</div>
+<% if flash[:notice].present? %>
+  <p class="flash_msg"><%= flash[:notice] %></p>
+<% end %>
+
+<span class ="doctor_list_title">List of all Doctors </span>
+<%= button_to 'Add new Doctor', new_doctor_path, :class => "btn add-doctor"%>
+<%= button_to 'Create slot', new_slot_path,  :class => "btn create-slot"%><br><br>
+<table class="table table-striped table-bordered table-condensed">
+    <tr><th>id</th> <th>Doctor Name</th><th>Edit/delete</th></tr>
+    <% @doctors.each_with_index do |doctor,i| %>
+      <tr>
+          <td><%= i+1  %></td>
+          <td><%= link_to doctor.user.first_name, doctor_detail_doctor_path(doctor) %> 
+              <%= link_to doctor.user.last_name, doctor_detail_doctor_path(doctor)%></td>
+          <td>           
+              <%= link_to  'edit', edit_doctor_path(doctor) %>/
+              <%= link_to  'delete', doctor, :confirm => "are you sure to delete", :method => "delete"%>
+          </td>
+      </tr>
+    <% end %>  
+</table>

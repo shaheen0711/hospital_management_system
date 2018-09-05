@@ -1,0 +1,16 @@
+<div class="breadcrumb"> <% make_breadcrumb %> 
+    <%= render_breadcrumbs %>
+</div>
+<% if flash[:notice].present? %>
+  <p class="flash_msg"><%= flash[:notice] %></p>
+<% end %>
+<table class="table table-striped table-bordered table-condensed">
+   
+    <tr><td>Slot id</td><td><%= @slots.id%></td></tr>
+    <tr><td>Start_time</td><td><%= @slots.start_time.strftime("%H:%M:%S") %></td></tr>
+    <tr><td>End_time</td><td><%= @slots.end_time.strftime("%H:%M:%S")%></td></tr>
+    <tr><td>Doctor id</td><td><%= @slots.doctor_id%></td></tr>
+   
+</table>
+
+  

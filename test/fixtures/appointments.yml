@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  doctor_id: 1
+  patient_id: 1
+  appointment_date: 2018-08-17
+  slot_id: 1
+
+two:
+  doctor_id: 1
+  patient_id: 1
+  appointment_date: 2018-08-17
+  slot_id: 1

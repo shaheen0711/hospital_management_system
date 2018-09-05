@@ -1,0 +1,23 @@
+
+
+<p class="reg"> New Patient?
+    <%= link_to "register", new_patient_path  %>
+</p>
+<br>
+<br>
+<div class="login">
+    <div class="form-group row">
+        <% form_for :user, :url => {:action => "login"}, :method => :post do |f|  %>
+          <div class="col-xs-2">
+              <%= f.label :username, "Username" %><br>
+              <%= f.text_field :username ,:class => "form-control", :placeholder => "Enter username"%>
+          </div><br>
+          <div class="col-xs-2">
+
+              <%= f.label :password, "Password"%><br />
+              <%= f.password_field :password,:class => "form-control", :placeholder => "Enter password" %>
+          </div><br>
+          <p><%= submit_tag "Log in",  :class => "btn btn-success"%>
+            <%  end %>
+    </div>
+</div>
