@@ -2,19 +2,15 @@
     <%= render_breadcrumbs %>
 </div>
 
-
 <% if flash[:notice].present? %>
   <p class="flash_msg"><%= flash[:notice] %></p>
 <% end %>
-
-<br>
 <div class="container">
     <div class="register">
         <div class="main_title"><h4>Book appointment</h4></div>
         <% form_for @appointment do |f|  %>
           <%= f.error_messages%>
           <%= f.hidden_field :patient_id, :value => @current_user.patient.id%>
-
           <div class="form-group">
               <label class="control-label col-sm-2">Appointment date:</label>
               <div class="col-sm-4">
@@ -24,9 +20,6 @@
                   </div>
               </div>
           </div>
-
-
-
           <div class="form-group">
               <label for ="department" class="control-label col-sm-2">Department name:</label>
               <div class="col-sm-4"  id="department">
@@ -35,7 +28,6 @@
                     :class => "form-control" , :onchange => "doctor_list(this);"%><br>
               </div>
           </div>
-
           <div class="form-group">
               <label for="doctor" class="control-label col-sm-2">Doctor name:</label>
               <div class="col-sm-4" id="doctor">
@@ -44,9 +36,7 @@
           </div>
           <div class="form-group">
               <label class="control-label col-sm-2" for="slot"> Time:</label>
-              
               <div class="col-sm-4" id="slot">
-
                   <%= f.select:slot_id, [['choose slot', nil]], {}, html_options = {:class => "form-control" }%><br/>
               </div>
           </div>
@@ -54,14 +44,6 @@
         <%  end %>
     </div>
 </div>
-
-
-
-
-
-
-
-
 <script>
   function doctor_list(obj) {
       if (jQuery(obj).val() != "") {

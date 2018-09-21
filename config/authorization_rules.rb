@@ -12,7 +12,6 @@ authorization do
     includes :manage_users
     has_permission_on :patients, 
       :to => [:show_pdf]
-   
 	end
 
 	role :doctor do
@@ -20,7 +19,6 @@ authorization do
 		includes :view_user
     includes :search 
     includes :manage_record
-  
     has_permission_on :patients, 
       :to => [:patient_profile]
 	end
@@ -29,9 +27,7 @@ authorization do
     includes :patient_details
 		includes :view_records
     
-    
 	end
-  
   
   role :patient_details do
     has_permission_on :patients, :to => [:index, :new, :download_pdf, :show_pdf, :medical_record, :book_appointment, :department_detail, :doctor_list, :doctor_detail]
@@ -41,7 +37,7 @@ authorization do
     has_permission_on :patients, :to => [:new, :create]
   end
   
-   role :manage_users do
+  role :manage_users do
     has_permission_on :users, :to => [:new, :index, :create]
   end
   

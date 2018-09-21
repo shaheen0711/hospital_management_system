@@ -1,12 +1,9 @@
 <div class="breadcrumb"> <% make_breadcrumb %> 
     <%= render_breadcrumbs %>
 </div>
-
-
-<h4> Create slot</h4>
+<div class="main_title"><h4> Create slot</h4></div>
 <% form_for @slot do |f|  %>
   <%= f.error_messages%>
-
   <div class="form-group">
       <label for ="department" class="control-label col-sm-2">Department name:</label>
       <div class="col-sm-4"  id="department">
@@ -15,14 +12,12 @@
             :class => "form-control" , :onchange => "doctor_list(this);"%><br>
       </div>
   </div>
-
   <div class="form-group">
       <label for="doctor" class="control-label col-sm-2">Doctor name:</label>
       <div class="col-sm-4" id="doctor">
           <%= f.select :doctor_id, [['select doctor', nil]], {}, :class => "form-control" %><br>
       </div>
   </div>
-
   <div class="form-group">
       <label class="control-label col-sm-2">Start time:</label>
       <div class="col-sm-4">
@@ -38,42 +33,6 @@
   </div>
 <%  end %>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script>
   function doctor_list(obj) {
       if (jQuery(obj).val() != "") {
@@ -82,20 +41,12 @@
               url: "/slots/doctor_list/" + jQuery(obj).val(),
               type: "GET",
               dateType: "html",
-              
+
               success: function (data) {
-                  
-//                      $("#doctor").html(data);
-                  
+
               }
           });
-
-
-
       }
   }
   ;
-
-
-
 </script>

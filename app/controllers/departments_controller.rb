@@ -1,5 +1,4 @@
 class DepartmentsController < ApplicationController
-
   before_filter :login_required
   filter_access_to :all  
 
@@ -21,7 +20,6 @@ class DepartmentsController < ApplicationController
       flash[:notice] = "New Department added."
       redirect_to departments_path 
     else
-      
       render "add_department"
     end
   end
@@ -45,7 +43,6 @@ class DepartmentsController < ApplicationController
     end
   end
   
-  
   def delete_department
     @department = Department.find(params[:id])
     if @department.destroy
@@ -55,14 +52,14 @@ class DepartmentsController < ApplicationController
       flash[:notice] = "Department not deleted."
       render "delete_department"
     end
-    end
-
-    def doctor_detail
-      @doctor = Doctor.find_by_department_id(params[:id])
-    end
-  
-    def doctor_list
-      @doctors = Doctor.find_all_by_department_id(params[:id])
-    end
-
   end
+
+  def doctor_detail
+    @doctor = Doctor.find_by_department_id(params[:id])
+  end
+  
+  def doctor_list
+    @doctors = Doctor.find_all_by_department_id(params[:id])
+  end
+
+end

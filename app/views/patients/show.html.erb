@@ -4,8 +4,7 @@
 <% if flash[:notice].present? %>
   <p class="flash_msg"><%= flash[:notice] %></p>
 <% end %>
-
-   <table class="table table-striped table-bordered table-condensed">
+<table class="table table-striped table-bordered table-condensed">
     <tr><td>Patient id</td><td><%= @patient.id%></td></tr>
     <tr><td>First name</td><td><%= @patient.user.first_name%></td></tr>
     <tr><td>Last name</td><td><%= @patient.user.last_name%></td></tr>

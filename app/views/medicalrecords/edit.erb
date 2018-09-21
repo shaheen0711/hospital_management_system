@@ -1,5 +1,5 @@
 <div class="breadcrumb">
-<% breadcrumb :medicalrecords_edit, @patient %> 
+    <% breadcrumb :medicalrecords_edit, @patient %> 
     <%= render_breadcrumbs %>
 </div>
 <div class ="edit_records"><h3>Edit record</h3></div>
@@ -12,23 +12,18 @@
           <%= f.text_field :doctor_observation, :class => "form-control"  %>
       </div>
   </div>
-
   <div class="form-group">
       <label class="control-label col-sm-2">Doctor prescription</label>
       <div class="col-sm-4">
           <%= f.text_field :prescription, :class => "form-control" %>
       </div>
   </div>
-
   <div class="form-group">
       <label class="control-label col-sm-2">Upload report</label>
       <div class="col-sm-4">
-          <%= f.file_field :photo%>
-          <br>
-          <br>
+          <%= f.file_field :photo%> <br><br>
           <%= f.submit "Update" , :class => "btn" %>
       </div>
   </div>
-
 <% end %>
 

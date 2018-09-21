@@ -14,8 +14,8 @@ class MedicalrecordsController < ApplicationController
     @patient = Patient.find(params[:patient_id])
     @medicalrecord = @patient.medicalrecords.find(params[:id])
     render :pdf => "show_pdf.html.erb",
-      :disposition => "attachment; filename='record.pdf'",
-    :template => "medicalrecords/show_pdf.html.erb"
+           :disposition => "attachment; filename='record.pdf'",
+           :template => "medicalrecords/show_pdf.html.erb"
   end
   
   def new
@@ -54,11 +54,9 @@ class MedicalrecordsController < ApplicationController
     @patient = Patient.find(params[:patient_id])
     @medicalrecord = Medicalrecord.find(params[:id])
     @medicalrecord.destroy
-
     respond_to do |format|
       format.html { redirect_to patient_medicalrecords_path(@patient) }
       format.xml  { head :ok }
     end
-
   end
 end

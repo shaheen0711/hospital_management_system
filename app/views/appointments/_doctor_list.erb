@@ -1,2 +1,2 @@
-<%=  options_for_select([["#{('choose doctor')}",'']] + @doctors.map {|x| [x.user.first_name+" "+x.user.last_name, x.id]} )%>
+<%= options_for_select([["#{('choose doctor')}",'']] + @doctors.map {|x| [x.user.first_name+" "+x.user.last_name, x.id]} )%>
 

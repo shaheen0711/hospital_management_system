@@ -1,14 +1,13 @@
 <div class="breadcrumb"> <% make_breadcrumb %> 
     <%= render_breadcrumbs %>
 </div>
-<br>
 <% if flash[:notice].present? %>
   <p class="flash_msg"><%= flash[:notice] %></p>
 <% end %> 
 <% form_for @room do |f| %>
   <% f.error_messages %>
  <div class="form-group">
-      <h5>Update room details</h5>
+     <div class="main_title"><h4>Update room details</h4></div>
       <label class="control-label col-sm-2">Room number:</label>
       <div class="col-sm-4">
           <%= f.text_field :room_number, :class => "form-control" , :placeholder => "enter room number" %><br> 

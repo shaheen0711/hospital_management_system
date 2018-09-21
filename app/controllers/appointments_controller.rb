@@ -20,7 +20,6 @@ class AppointmentsController < ApplicationController
     @doctors = []
   end
   
-  
   def show
     @appointment = Appointment.find(params[:id])
   end
@@ -28,10 +27,7 @@ class AppointmentsController < ApplicationController
   def show_pdf
     @appointment = Appointment.find(params[:id])
     render :pdf => "show_pdf.html.erb",
-      #   :disposition => "attachment; filename='filename.pdf'",
-    #   :layout => false,
-    #   :margin => {:top => 0, :bottom => 0, :right => 0, :left => 0},
-    :template => "appointments/show_pdf.html.erb",
+      :template => "appointments/show_pdf.html.erb",
       :show_as_html => (params[:debug].present? && params[:debug].to_i == 1)
   end
   
@@ -43,9 +39,7 @@ class AppointmentsController < ApplicationController
   end
   
   def slots_list
-    @slots = Slot.find_by_sql("
-                              
-SELECT slots.id, slots.start_time, slots.end_time from slots
+    @slots = Slot.find_by_sql("SELECT slots.id, slots.start_time, slots.end_time from slots
                                 inner join doctors ON
                                 doctors.id = slots.doctor_id
                                 where doctor_id = #{(params[:id])}  
@@ -54,11 +48,8 @@ SELECT slots.id, slots.start_time, slots.end_time from slots
                                 where doctor_id = #{(params[:id])} 
                                 and appointment_date = '#{(params[:date])}')
                                 group by slots.id")
-      render :update do |page|
-        page.replace_html "appointment_slot_id"  , :partial => "slot_list"
-      end
+    render :update do |page|
+      page.replace_html "appointment_slot_id"  , :partial => "slot_list"
     end
-
-  
-  
+  end
 end

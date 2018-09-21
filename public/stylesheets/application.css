@@ -8,11 +8,19 @@
     border: solid red 2px;
     border-radius:5px;
 }
-
+.home_page_heading{
+    padding-top:13px;
+    padding-bottom:30px;
+}
+.Welcome{
+    float:left;
+}
+.current_user{
+    float:left;
+}
 .profile {
     float:right;
 }
-
 .add-doctor {
     float:right;
     color:black;
@@ -29,14 +37,9 @@
     border-radius: 5px;
     margin: 5px;
 }
-
-.search{
-    float:right;
-}
 .reg{
     float:right;
 }
-
 .login{
     text-align:center;
     padding-left: 380px;
@@ -56,7 +59,6 @@
 .star{
     color:red;
 }
-
 .bed_allocation_button{
     float:right;
 }
@@ -78,7 +80,6 @@
 .main_title{
     margin:16px;
 }
-
 .manage_department{
     margin:20px;
     float:left;
@@ -86,7 +87,6 @@
     border: 2px solid   red;
     border-radius: 5px;
     padding: 8px;
-
 }
 .manage_room{
     margin:20px;
@@ -95,7 +95,6 @@
     border: 2px solid   red;
     border-radius: 5px;
     padding: 10px;
-
 }
 .manage_doctor{
     margin:20px;
@@ -104,7 +103,6 @@
     border: 2px solid   red;
     border-radius: 5px;
     padding: 10px;
-
 }
 .manage_patient{
     margin:20px;
@@ -113,35 +111,28 @@
     border: 2px solid   red;
     border-radius: 5px;
     padding: 10px;
-
 }
 .mng_department{
     font-size:15px;   
 }
-
 .mng_department_link{
     font-size:20px;
 }
-
-
 .mng_room{
     font-size:15px;   
 }
-
 .mng_room_link{
     font-size:20px;
 }
 .mng_doctor{
     font-size:15px;   
 }
-
 .mng_doctor_link{
     font-size:20px;
 }
 .mng_patiet{
     font-size:15px;   
 }
-
 .mng_patient_link{
     font-size:20px;
 }
@@ -161,12 +152,10 @@
     border-radius: 5px;
     padding: 8px;
 }
-
 .doctor_list_title{    
     float:left;
     font-size:20px;
 }
-
 .arrow{
     padding-left: 5px;
     padding-right: 5px;

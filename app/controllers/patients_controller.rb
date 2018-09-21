@@ -13,7 +13,7 @@ class PatientsController < ApplicationController
   def show_pdf
     @patient = Patient.find(params[:id])
     render :pdf => "show_pdf.html.erb",
-           :disposition => "attachment; filename='filename.pdf'"
+      :disposition => "attachment; filename='filename.pdf'"
   end
   
   def edit
@@ -28,14 +28,14 @@ class PatientsController < ApplicationController
     if request.post?
       @patient = Patient.new(params[:patient])
       if @patient.save   
-        redirect_to @patient
-        flash[:notice] = "Welcome, Your account is created now you can login"
+        redirect_to login_users_path
+        flash[:notice] = "Welcome, Your account is created, you can login now"
       else    
         render 'new'  
         flash[:notice] = "Some thing went worng, Your account is not created ."
       end
     else
-     render 'new'
+      render 'new'
     end
   end
   
@@ -62,8 +62,8 @@ class PatientsController < ApplicationController
   def download_pdf
     redner :pdf =>  "#{Rails.root}/public/images/rails.png", 
       :disposition => "attachment; filename='filename.pdf'",
-       :type =>  "application/pdf",
-       :x_sendfile => true
+      :type =>  "application/pdf",
+      :x_sendfile => true
   end
   
   def doctor_list
@@ -75,12 +75,10 @@ class PatientsController < ApplicationController
   end
   def patient_detail
     @patient = Patient.find(params[:id])
-    
   end
    
-   def patient_profile
+  def patient_profile
     @patient = Patient.find(params[:id])
-    
   end
   
   def doctor_detail

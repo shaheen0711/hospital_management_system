@@ -70,22 +70,9 @@ class User < ActiveRecord::Base
       prv = prv
     end
     prv
-    #    privileges.map { |privilege| prv << privilege.name.underscore.to_sym } unless @privilge_symbols
-
-    #    @privilge_symbols ||= if admin?
-    #      [:admin] + prv
-    #    elsif student?
-    #      [:student] + prv
-    #    elsif employee?
-    #      [:employee] + prv
-    #    elsif parent?
-    #      [:parent] + prv
-    #    else
-    #      prv
-    #    end
   end
+  
   private
-
   #private method to encrypt password using SHA1 Digest.
   def encrypt_password
     if(password.blank?)

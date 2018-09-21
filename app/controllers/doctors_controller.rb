@@ -15,11 +15,9 @@ class DoctorsController < ApplicationController
     if @doctor.save
       flash[:notice] = "Doctor detail added." 
       redirect_to @doctor
-     
     else 
       flash[:notice] = "Doctor detail Not added."
       render 'new'
-      
     end
   end
 
@@ -51,7 +49,6 @@ class DoctorsController < ApplicationController
   end
   
   def all_patient
-    #@patients = Appointment.find_all_by_doctor_id(@current_user.doctor.id)
     @patients = Appointment.find_by_sql("select patient_id from appointments where
                                         doctor_id = #{@current_user.doctor.id} 
                                         group by patient_id")

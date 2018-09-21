@@ -1,11 +1,10 @@
 <div class="breadcrumb"> <% make_breadcrumb %> 
     <%= render_breadcrumbs %>
 </div>
-<br>
 <% if flash[:notice].present? %>
   <p class="flash_msg"><%= flash[:notice] %></p>
 <% end %>
-  <div class="main_title"><h3>Add new room</h3></div>
+<div class="main_title"><h3>Add new room</h3></div>
 <% form_for :room,  :url => {:action => "add_room"}, :method => :post do |f| %>
   <% f.error_messages %>
   <div class="form-group">

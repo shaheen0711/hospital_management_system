@@ -3,12 +3,12 @@
 </div>
 
 <% if flash[:notice].present? %>
-<%= flash[:notice] %>
+<p class="flash_msg">  <%= flash[:notice] %></p>
 <% end %>
 
 <div class ="patient_bed_allocation">
     <div class="all_patient">List of all Patients </div>
-<%= button_to "bed allocation" , new_bedallocation_path, :class => "bed_allocation_button btn"%><br><br>
+    <%= button_to "bed allocation" , new_bedallocation_path, :class => "bed_allocation_button btn"%><br><br>
 </div>
 <table class="table table-striped table-bordered table-condensed">
     <tr><th>id</th> <th>Patients Name</th><th>Edit/delete</th></tr>

@@ -4,10 +4,9 @@
 <% if flash[:notice].present? %>
   <p class="flash_msg"><%= flash[:notice] %></p>
 <% end %>
-<br>
-<div class="book_appointment"><h5>Edit patient details</h5></div>
+<div class="main_title"><h4>Update patient details</h4></div>
 <div class="register">
-  <% form_for @patient do |f|  %>
+    <% form_for @patient do |f|  %>
       <%= f.error_messages%>
       <div class="form-group">
           <label class="control-label col-sm-2">First name:</label>
@@ -21,14 +20,14 @@
               <%= f.text_field :last_name, :class => "form-control" , :placeholder => "enter last name"%>
           </div>
       </div>
-       <div class="form-group">
-              <label class="control-label col-sm-2">Date of birth:</label>
-              <div class="col-sm-4">
-                  <div class='input-group date' id='datetimepicker3'>
-                      <%= f.date_select :date_of_birth,{:start_year =>1980, :end_year =>  Date.current.year},  html_options = {:class => "form-control"} %>
-                  </div>
+      <div class="form-group">
+          <label class="control-label col-sm-2">Date of birth:</label>
+          <div class="col-sm-4">
+              <div class='input-group date' id='datetimepicker3'>
+                  <%= f.date_select :date_of_birth,{:start_year =>1980, :end_year =>  Date.current.year},  html_options = {:class => "form-control"} %>
               </div>
           </div>
+      </div>
       <div class="form-group">
           <label class="control-label col-sm-2">Contact number:</label>
           <div class="col-sm-4">
@@ -48,7 +47,6 @@
               <%= f.text_field :email, :class => "form-control" , :placeholder => "abc@email.com"%>
           </div>
       </div>
-
       <div class="form-group">
           <label class="control-label col-sm-2">Gender:</label>
           <div class="col-sm-4">

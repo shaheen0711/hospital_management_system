@@ -4,10 +4,9 @@
 <% if flash[:notice].present? %>
   <p class="flash_msg"><%= flash[:notice] %></p>
 <% end %>
-<br>
-<p>Already registered? You can <a href="users/login">log in here.</a></p>
+<p class="main_title">Already registered? You can <a href="users/login">log in here.</a></p>
 <div class="register">
-  <% form_for @patient, :html => { :multipart => true } do |f|  %>
+    <% form_for @patient, :html => { :multipart => true } do |f|  %>
       <%= f.error_messages%>
       <div class="form-group">
           <label class="control-label col-sm-2">First name<span class ="star">*</span>:</label>
@@ -22,13 +21,13 @@
           </div>
       </div>
       <div class="form-group">
-              <label class="control-label col-sm-2">Date of birth<span class ="star">*</span>:</label>
-              <div class="col-sm-4">
-                  <div class='input-group date' id='datetimepicker3'>
-                      <%= f.date_select :date_of_birth,{:start_year =>1980, :end_year =>  Date.current.year},  html_options = {:class => "form-control"} %>
-                  </div>
+          <label class="control-label col-sm-2">Date of birth<span class ="star">*</span>:</label>
+          <div class="col-sm-4">
+              <div class='input-group date' id='datetimepicker3'>
+                  <%= f.date_select :date_of_birth,{:start_year =>1980, :end_year =>  Date.current.year},  html_options = {:class => "form-control"} %>
               </div>
           </div>
+      </div>
       <div class="form-group">
           <label class="control-label col-sm-2">Contact number<span class ="star">*</span>:</label>
           <div class="col-sm-4">
@@ -60,13 +59,12 @@
               <%= f.radio_button :gender, "other" %>
           </div>
       </div>
-    <div class="form-group">
+      <div class="form-group">
           <label class="control-label col-sm-2">Upload photo:</label>
           <div class="col-sm-4">
               <%= f.file_field :photo%>
           </div>
       </div>
-   
       <div class="form-group">
           <label class="control-label col-sm-2">Blood group<span class ="star">*</span>:</label>
           <div class="col-sm-4">

@@ -29,9 +29,8 @@ class BedsController < ApplicationController
   def delete_bed
     @bed = Bed.find(params[:id])
     @bed.destroy
-     flash[:notice] = "bed deleted." 
+    flash[:notice] = "bed deleted." 
     redirect_to beds_path
-  
   end
   
   def update
@@ -44,5 +43,4 @@ class BedsController < ApplicationController
       redirect_to edit_bed_path
     end
   end
-
 end

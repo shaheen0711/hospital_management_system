@@ -1,22 +1,19 @@
 <div class="media" style="background-color:red">
-              <%= image_tag "#{Rails.root}/public/images/Hospital.jpg", :class => "pdf-logo" %>
-                
-                <div class="heading">
-                    <h4>Hospital Management System</h4> 
-                    </p>
-                </div>
-            </div>
+    <%= image_tag "#{Rails.root}/public/images/Hospital.jpg", :class => "pdf-logo" %>
+    <div class="heading">
+        <h4>Hospital Management System</h4> 
+        </p>
+    </div>
+</div>
 <br>
-
 <p>Medical record list</p>
 <table class="table table-striped table-bordered table-condensed">
-     <tr><th>Record no</th><th>Doctor observation</th> <th>Prescription</th></tr>
-<% @patient.medicalrecords.each_with_index do |c, i| %>
-     
-     <tr><td><%= i+1  %></td>
+    <tr><th>Record no</th><th>Doctor observation</th> <th>Prescription</th></tr>
+    <% @patient.medicalrecords.each_with_index do |c, i| %>
+      <tr>
+          <td><%= i+1  %></td>
           <td><%= c.doctor_observation %></td>
           <td> <%= c.prescription%></td>
-     </tr>
+      </tr>
     <% end %>
-  </table>
- 
+</table>

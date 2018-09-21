@@ -12,8 +12,7 @@ class Doctor < ActiveRecord::Base
   validates_presence_of  :last_name 
   validates_presence_of  :address	
   validates_presence_of  :contact_number
-  validates_presence_of  :date_of_birth
-  
+  validates_presence_of  :date_of_birth 
   validates_presence_of  :email, :format => :VALID_EMAIL_REGEX
   validates_presence_of  :gender
   validates_presence_of  :nationality

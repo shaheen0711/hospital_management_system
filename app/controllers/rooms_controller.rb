@@ -17,14 +17,13 @@ class RoomsController < ApplicationController
       redirect_to rooms_path
     else
       render "add_room" 
-       flash[:notice] = "room not added."
+      flash[:notice] = "room not added."
     end
   end
 
   def edit
     @room = Room.find(params[:id]) 
   end
-  
   
   def update
     @room = Room.find(params[:id])
@@ -36,10 +35,7 @@ class RoomsController < ApplicationController
       redirect_to  edit_room_path
     end
   end
-  
-  
-  
-  
+ 
   def room_detail
     @room = Room.find(params[:id])
   end
@@ -53,7 +49,6 @@ class RoomsController < ApplicationController
     if @bed.save
       flash[:notice] = "new bed added." 
       redirect_to bed_list_room_path
-     
     else        
       render 'create_bed'
       flash[:notice] = "bed not added."
@@ -74,12 +69,11 @@ class RoomsController < ApplicationController
     flash[:notice] = "one bed deleted."
     redirect_to rooms_path
   end
+  
   def export_beds
     @beds = Room.find_beds
     beds_csv = FasterCSV.generate do |csv|
-      # header row
       csv << ["Room no.", "Total beds", "Available beds" ,"Occupied beds"]
-      # data rows
       @beds.each do |bed|
         csv << [bed.room_number, bed.total_beds, bed.available_beds, bed.Occupied_beds]
       end
