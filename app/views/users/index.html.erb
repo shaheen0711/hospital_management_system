@@ -1,7 +1,58 @@
-<table class="table table-striped table-bordered table-condensed">
-    <tr><td><%=t(:id)%></td><td><%= @user.id%></td></tr>
-    <tr><td><%=t('users.first_name')%></td><td><%= @user.first_name%></td></tr>
-    <tr><td><%=t(:last_name)%></td><td><%= @user.last_name%></td></tr>
-    <tr><td><%=t(:username)%></td><td><%= @user.username%></td></tr>
-    <tr><td><%=t(:user_type)%></td><td><%= @user.user_type%></td></tr>
-</table>
+<% if flash[:notice].present? %>
+  <p class="flash_msg"><%= flash[:notice] %></p>
+<% end %>
+
+
+<p class="profile">
+    <%= link_to "Profile", admin_profile_users_path %>   <%= link_to "Logout", logout_users_path%>
+</p><br><br><br>
+
+<% if permitted_to? :index, :departments %>
+<div class="manage_department">	
+      <a class="mng_department_link" href="departments">Manage Departments</a>
+      <p class="mng_department">See the details of department. you can see , update and delete the department</p>
+  </div>
+<% end %>
+
+<% if permitted_to? :index, :rooms %>
+  <div class="manage_room">
+      <a class="mng_room_link" href="rooms">Manage Rooms</a>
+      <p class="mng_room">See the details of room. you can update and delete the rooms, also bed details</p>
+  </div>
+<% end %>
+
+<% if permitted_to? :index, :doctors %>
+  <div class="manage_doctor">	
+      <a class="mng_doctor_link" href="doctors">Manage Doctors</a>
+       <p class="mng_room">See the details of doctors. you update and delete the doctor details</p>
+  </div>
+<% end %>
+<% if permitted_to? :index, :users %>
+   <div class="manage_patient">	
+      <a class="mng_patient_link" href="patients">Manage Patients</a>
+       <p class="mng_patient">See the details of patients. you can update and delete the patient details</p>
+  </div>
+<% end %>
+
+
+<% if permitted_to? :all_patient, :doctors %>
+  <div class="book_appointment_main">	
+      <%= link_to "All Patient", all_patient_doctors_path%>
+  </div>
+<% end %>
+
+
+<% if permitted_to? :new, :patients %>
+    <div class="book_appointment_main">	
+      <%= link_to "Book appointment", new_appointment_path%>
+    </div>
+<% end %>
+
+<% if permitted_to? :index, :medicalrecords %>
+  <div class="medical_records">
+      <%= link_to "Medical Record", medical_record_patients_path%>
+  </div>
+<% end %>
+
+
+

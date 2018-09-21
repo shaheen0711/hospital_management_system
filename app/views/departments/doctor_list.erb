@@ -1,0 +1,14 @@
+<div class="breadcrumb"> <% make_breadcrumb %> 
+<%= render_breadcrumbs %>
+</div>
+
+<p>List of all Doctors in this Department</p>
+<table class="table table-striped table-bordered table-condensed">
+    <tr><th>S.no.</th> <th>Doctor Name</th></tr>
+    <% @doctors.each do |doctor| %>
+      <tr><td><%= doctor.id%></td>
+          <td><%= link_to  doctor.user.first_name, doctor_detail_department_path%>
+              <%= link_to  doctor.user.last_name, doctor_detail_department_path(doctor) %></td>
+      </tr>
+    <% end %>
+</table>

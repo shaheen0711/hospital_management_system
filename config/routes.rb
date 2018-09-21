@@ -1,8 +1,44 @@
 ActionController::Routing::Routes.draw do |map|
   
-  map.resources :users, :only => [:index], :collection => { :signup => [:get,:post], :login => [:get, :post], :logout => [:get] }
-  map.resources :doctors
-#  map.users '/users', :controller => 'users', :action => 'sing_up'
+  map.resources :users,
+    :collection => { :signup => [:get,:post], :login => [:get, :post], 
+    :logout => [:get] , :admin_profile => [:get, :post] }
+ 
+  map.resources :doctors,
+    :member => {:doctor_detail => [:get, :post], :patient_detail => [:get, :post]},
+    :collection => { :add_doctor => [:get, :post], :edit => [:get, :post], 
+    :search => [:get, :post], :all_patient => [:get, :post]} 
+  
+  map.resources :patients, :has_many => :medicalrecords,
+    :member => {:patient_profile => [:post , :get], :patient_detail => [:post , :get], :department_detail => [:get, :post], :download_pdf => [:get],
+    :slots_list => [:get, :post], :doctor_list => [:get, :post],
+    :doctor_detail => [:get, :post], :show_pdf => [:get]},
+    :collection => { :new_patient => [:get, :post], :edit_patient => [:get, :post], 
+      :medical_record => [:get, :post], :book_appointment => [:get, :post]}
+    
+  map.resources :departments,
+    :member => {:department_detail => [:get, :post], :doctor_list => [:get, :post], :doctor_detail => [:get, :post]},
+    :collection => { :add_department => [:get, :post] , :delete_department => [:get, :post]}
+  
+  map.resources :rooms, 
+    :member => {:room_detail => [:get, :post], :bed_list => [:get, :post], :create_bed => [:get, :post]},
+    :collection => { :add_room => [:get, :post], :csv_report => [:get, :post]}
+  
+  map.resources :beds, 
+    :collection => {:add_bed => [:get, :post], :room_detail => [:get, :post], :create_bed => [:get, :post]}
+  
+  map.resources :slots, 
+    :member => {:create_slot => [:get, :post]}
+  map.resources :appointments, 
+      :member => {:show_pdf => [:get]},
+      :collection => {:doctor_list => [:get, :post], :slots_list => [:get, :post]}
+  
+  map.resources :medicalrecords, :member => {:show_pdf => [:get], :download_pdf => [:get]}
+  
+  map.resources :bedallocations 
+  map.connect '/rooms/export', :controller => 'rooms', :action => 'export'
+  ##, :member => {:create_bed => [:get, :post]}
+  #  map.users '/users', :controller => 'users', :action => 'sing_up'
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
@@ -43,7 +79,7 @@ ActionController::Routing::Routes.draw do |map|
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing or commenting them out if you're using named routes and resources.
  
-  map.root :controller => "users"
+  map.root :controller => "users", :action => "login"
   
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'

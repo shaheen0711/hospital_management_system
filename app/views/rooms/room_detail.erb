@@ -1,0 +1,14 @@
+<div class="breadcrumb"> <% make_breadcrumb %> 
+    <%= render_breadcrumbs %>
+</div>
+
+<% if flash[:notice].present? %>
+  <p class="flash_msg"><%= flash[:notice] %></p>
+<% end %>
+   <table class="table table-striped table-bordered table-condensed">
+    <tr><td>Room id</td><td><%= @room.id%></td></tr>
+    <tr><td>Room Description</td><td><%= @room.description%></td></tr>
+    
+</table>
+
+  <%= link_to "Detail of this room beds", bed_list_room_path%><br>

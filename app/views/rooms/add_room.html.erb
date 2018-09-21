@@ -1,0 +1,24 @@
+<div class="breadcrumb"> <% make_breadcrumb %> 
+    <%= render_breadcrumbs %>
+</div>
+<br>
+<% if flash[:notice].present? %>
+  <p class="flash_msg"><%= flash[:notice] %></p>
+<% end %>
+  <div class="main_title"><h3>Add new room</h3></div>
+<% form_for :room,  :url => {:action => "add_room"}, :method => :post do |f| %>
+  <% f.error_messages %>
+  <div class="form-group">
+      <label class="control-label col-sm-2">Room number:</label>
+      <div class="col-sm-4">
+          <%= f.text_field :room_number, :class => "form-control" , :placeholder => "enter room number" %><br>
+      </div>
+  </div>
+  <div class="form-group">
+      <label class="control-label col-sm-2">Room description:</label>
+      <div class="col-sm-4">
+          <%= f.text_field :description, :class => "form-control" , :placeholder => "enter room desription" %><br>
+          <%= f.submit "Add", :class => "add" %>
+      </div>
+  </div>
+<% end %>

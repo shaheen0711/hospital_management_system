@@ -1,0 +1,20 @@
+authorization do
+   role :admin do
+   has_permission_on :users, :to => :all
+   has_permission_on :doctors, :to => :all
+   has_permission_on :patients, :to => :all
+   has_permission_on :rooms , :to => :all
+ end
+  role :dotor do
+    
+    has_permission_on :patients, :to => [:read ,:update]
+    
+  end
+  
+  role :patient do
+     has_permission_on :user, :to => [:index] #:read, :create]
+#     has_permission_on :user, :to => [:update, :delete] do
+#       if_attribute :user_id => is {user.id}
+#     end
+   end
+end

@@ -68,8 +68,6 @@ module PdfHelper
     end
   end
 
-  # Given an options hash, prerenders content for the header and footer sections
-  # to temp files and return a new options hash including the URLs to these files.
   def prerender_header_and_footer(options)
     [:header, :footer].each do |hf|
       if options[hf] && options[hf][:html] && options[hf][:html][:template]
@@ -78,21 +76,11 @@ module PdfHelper
         html_str = render_to_string(:template => options[hf][:html][:template], :layout => options[:layout], :locals => options[hf][:html][:locals])
         nok = Nokogiri::HTML(html_str)        
         nok_result = nok.xpath("//img")
-        if nok_result.present? and FedenaSetting.s3_enabled?          
-          nok_result.each do |nok|
-            s3_url = nok.attributes['src'].value
-            if verify_http_https_file s3_url
-              @hf_tempfiles.push( s3_temp=WickedPdfTempfile.new("wicked_s3_image_#{Time.now.to_i}") )
-              File.open(s3_temp.path,'wb') do |file| file.write open(s3_url).read end
-              html_str = html_str.gsub(s3_url,s3_temp.path)
-            end
-          end
-          tf.write html_str #render_to_string(:template => options[hf][:html][:template], :layout => options[:layout], :locals => options[hf][:html][:locals])
-        else
-          tf.write html_str #render_to_string(:template => options[hf][:html][:template], :layout => options[:layout], :locals => options[hf][:html][:locals])
-        end        
+       
+          tf.write html_str 
+     
         tf.flush
-        #options[hf][:html].delete(:template)
+      
         options[hf][:html][:url] = "file:///#{tf.path}"
       end
     end

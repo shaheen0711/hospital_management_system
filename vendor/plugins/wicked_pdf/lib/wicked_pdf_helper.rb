@@ -7,14 +7,9 @@ module WickedPdfHelper
   end
 
   def wicked_pdf_image_tag(img, options={})
-    if(FedenaSetting.s3_enabled? and options[:s3].present? and options[:s3])      
-      image_url = options[:style].present? ? img.url(options[:style].to_sym,false):img.url(:original,false)
-      image_url = image_url.gsub('&amp;','&') if image_url.present?      
-      return (verify_http_https_file image_url) ? (image_tag image_url).gsub('&amp;','&') : ''
-    else
+
       image_path = img.path
       return image_tag "file://#{Rails.root.join(image_path)}", options
-    end
   end
 
   def wicked_pdf_javascript_src_tag(jsfile, options={})

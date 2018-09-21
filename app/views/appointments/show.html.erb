@@ -1,0 +1,19 @@
+<div class="breadcrumb"> <% make_breadcrumb %> 
+    <%= render_breadcrumbs %>
+</div>
+
+
+<% if flash[:notice].present? %>
+  <p class="flash_msg"><%= flash[:notice] %></p>
+<% end %>
+
+<table class="table table-striped table-bordered table-condensed">
+    <tr><td>Appointment id</td><td><%= @appointment.id%></td></tr>
+    <tr><td>Patient name</td><td><%= @appointment.patient.user.first_name%> <%= @appointment.patient.user.last_name%>
+    <tr><td>Department name</td><td><%= @appointment.department.department_name%></td></tr>
+    <tr><td>Doctor name</td><td><%= @appointment.doctor.user.first_name%>
+            <%= @appointment.doctor.user.last_name%></td></tr>
+    <tr><td>Date and Time</td><td><%= @appointment.appointment_date%> <%= @appointment.slot.start_time.strftime("%H:%M%P")%></td></tr>
+</table>
+
+<%= link_to "print",  show_pdf_appointment_path %>

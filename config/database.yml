@@ -21,8 +21,9 @@ development:
   database: hospital_management_system_development
   pool: 5
   username: root
-  password: foradian
+  password: sana07
   socket: /var/run/mysqld/mysqld.sock
+  reconnect: true
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -36,7 +37,8 @@ test:
   username: root
   password: foradian
   socket: /var/run/mysqld/mysqld.sock
-
+  reconnect: true
+  
 production:
   adapter: mysql
   encoding: utf8
@@ -44,5 +46,6 @@ production:
   database: hospital_management_system_production
   pool: 5
   username: root
-  password: foradian
+  password: sana07
   socket: /var/run/mysqld/mysqld.sock
+  reconnect: true

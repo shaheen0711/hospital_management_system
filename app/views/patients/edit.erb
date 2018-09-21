@@ -1,0 +1,71 @@
+<div class="breadcrumb"> <% make_breadcrumb %> 
+    <%= render_breadcrumbs %>
+</div>
+<% if flash[:notice].present? %>
+  <p class="flash_msg"><%= flash[:notice] %></p>
+<% end %>
+<br>
+<div class="book_appointment"><h5>Edit patient details</h5></div>
+<div class="register">
+  <% form_for @patient do |f|  %>
+      <%= f.error_messages%>
+      <div class="form-group">
+          <label class="control-label col-sm-2">First name:</label>
+          <div class="col-sm-4">
+              <%= f.text_field :first_name,  :class => "form-control", :placeholder => "enter first name"%>
+          </div>
+      </div>
+      <div class="form-group">
+          <label class="control-label col-sm-2">Last name:</label>
+          <div class="col-sm-4">
+              <%= f.text_field :last_name, :class => "form-control" , :placeholder => "enter last name"%>
+          </div>
+      </div>
+       <div class="form-group">
+              <label class="control-label col-sm-2">Date of birth:</label>
+              <div class="col-sm-4">
+                  <div class='input-group date' id='datetimepicker3'>
+                      <%= f.date_select :date_of_birth,{:start_year =>1980, :end_year =>  Date.current.year},  html_options = {:class => "form-control"} %>
+                  </div>
+              </div>
+          </div>
+      <div class="form-group">
+          <label class="control-label col-sm-2">Contact number:</label>
+          <div class="col-sm-4">
+              <%= f.text_field :contact_number, :class => "form-control" , :placeholder => "enter contact number" %>
+          </div>
+      </div>
+      <div class="form-group">
+          <label class="control-label col-sm-2">Address:</label>
+          <div class="col-sm-4">
+              <%= f.text_field :address, :class => "form-control" , :placeholder => "enter address"%>
+          </div>
+      </div>
+
+      <div class="form-group">
+          <label class="control-label col-sm-2">Email:</label>
+          <div class="col-sm-4">
+              <%= f.text_field :email, :class => "form-control" , :placeholder => "abc@email.com"%>
+          </div>
+      </div>
+
+      <div class="form-group">
+          <label class="control-label col-sm-2">Gender:</label>
+          <div class="col-sm-4">
+              <%= f.label :gender, "female", :value => "female" %>
+              <%= f.radio_button :gender, "female" %>
+              <%= f.label :gender, "male", :value => "male" %>
+              <%= f.radio_button :gender, "male" %>
+              <%= f.label :gender, "other", :value => "other" %>
+              <%= f.radio_button :gender, "other" %>
+          </div>
+      </div>    
+      <div class="form-group">
+          <label class="control-label col-sm-2">Blood group:</label>
+          <div class="col-sm-4">
+              <%= f.text_field :blood_group, :class => "form-control" , :placeholder => "A+"%><br>
+              <%= f.submit "update" , :class => "btn btn-success"%><br>
+          </div>
+      </div>
+    <%  end %>
+</div>

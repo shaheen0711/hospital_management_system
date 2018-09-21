@@ -1,0 +1,65 @@
+<div class="breadcrumb"> <% make_breadcrumb %> 
+    <%= render_breadcrumbs %>
+</div>
+
+<div class="main_title"><h4>Allocate bed</h4></div>
+
+<% form_for @bedallocation do |f|  %>
+  <%= f.error_messages%>
+
+
+  <div class="form-group">
+      <label for ="department" class="control-label col-sm-2">Patient name:</label>
+      <div class="col-sm-4"  id="department">
+          <%= f.select :patient_id, Patient.all.collect {|x| [x.user.first_name+" "+x.user.last_name+" ("+x.id.to_s+")", x.id]}, {}, :class => "form-control"%>
+      </div>
+  </div>
+  <div class="form-group">
+      <label for ="room" class="control-label col-sm-2">Room number:</label>
+      <div class="col-sm-4"  id="room">
+          <%= f.select :room_id, Room.all.collect {|x| [x.room_number, x.id]}, 
+            {:include_blank => "select room"}, 
+            :class => "form-control" , :onchange => "beds_list(this);"%><br>
+      </div>
+  </div>
+  <div class="form-group">
+      <label for ="bed" class="control-label col-sm-2">bed number:</label>
+      <div class="col-sm-4"  id="bed">
+<%= f.select :bed_id, [['select bed', nil]], {}, :class => "form-control" %><br>
+            <%= f.submit "allocate" , :class => "btn" %>
+      </div>
+  </div>
+
+<% end %>
+
+
+
+
+
+
+
+<script>
+  function beds_list(obj) {
+      if (jQuery(obj).val() != "") {
+
+          jQuery.ajax({
+              url: "/bedallocations/beds_list/" + jQuery(obj).val(),
+              type: "GET",
+              dateType: "html",
+              
+              success: function (data) {
+                  
+//                      $("#doctor").html(data);
+                  
+              }
+          });
+
+
+
+      }
+  }
+  ;
+
+
+
+</script>

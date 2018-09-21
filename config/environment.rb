@@ -8,6 +8,21 @@ require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
   config.gem 'declarative_authorization', :source => 'http://gemcutter.org'
+  config.gem 'nokogiri'
+  config.action_mailer.default_url_options = { :host => "localhost:3000" }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :enable_starttls_auto => true,
+    :address => "smtp.gmail.com",
+    :port => 587,
+    :domain => 'google.com',
+    :authentication => 'plain',
+    :user_name      => "snaa0711@gmail.com",
+    :password       => "Mine071492#",
+  }
+  config.active_record.observers = :user_observer
+  config.action_mailer.default_content_type = "text/html"
+  config.gem 'fastercsv'
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.

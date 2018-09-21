@@ -1,7 +1,7 @@
 class CreateDoctors < ActiveRecord::Migration
   def self.up
     create_table :doctors do |t|
-      t.integer :user_id
+      t.integer :user_id, :null => false
       t.integer :department_id
       t.string :qualification
       t.string :experience

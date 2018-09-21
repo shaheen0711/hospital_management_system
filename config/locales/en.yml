@@ -5,5 +5,17 @@ en:
   hello: "Hello world"
   users:
     first_name: "First name"
+    id: "User id"  
+    username: "User name"
+    last_name: "Last name"
+    user_type: "User type"
+    
   doctors:
     first_name: "Doctor first name"
+    
+    
+  departments:
+     id: "Department id"
+     Manage_departments: "Department"
+     
+     

@@ -1,0 +1,101 @@
+<div class="breadcrumb"> <% make_breadcrumb %> 
+    <%= render_breadcrumbs %>
+</div>
+
+
+<h4> Create slot</h4>
+<% form_for @slot do |f|  %>
+  <%= f.error_messages%>
+
+  <div class="form-group">
+      <label for ="department" class="control-label col-sm-2">Department name:</label>
+      <div class="col-sm-4"  id="department">
+          <%= f.select :department_id, Department.all.collect {|x| [x.department_name, x.id]}, 
+            {:include_blank => "choose department"}, 
+            :class => "form-control" , :onchange => "doctor_list(this);"%><br>
+      </div>
+  </div>
+
+  <div class="form-group">
+      <label for="doctor" class="control-label col-sm-2">Doctor name:</label>
+      <div class="col-sm-4" id="doctor">
+          <%= f.select :doctor_id, [['select doctor', nil]], {}, :class => "form-control" %><br>
+      </div>
+  </div>
+
+  <div class="form-group">
+      <label class="control-label col-sm-2">Start time:</label>
+      <div class="col-sm-4">
+          <%= f.text_field :start_time,  :class => "form-control", :placeholder => "enter start time"%>
+      </div>
+  </div>
+  <div class="form-group">
+      <label class="control-label col-sm-2">End time:</label>
+      <div class="col-sm-4">
+          <%= f.text_field :end_time, :class => "form-control" , :placeholder => "enter end time"%><br>
+          <%= f.submit "Create" , :class => "btn btn-success" %>
+      </div>
+  </div>
+<%  end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  function doctor_list(obj) {
+      if (jQuery(obj).val() != "") {
+
+          jQuery.ajax({
+              url: "/slots/doctor_list/" + jQuery(obj).val(),
+              type: "GET",
+              dateType: "html",
+              
+              success: function (data) {
+                  
+//                      $("#doctor").html(data);
+                  
+              }
+          });
+
+
+
+      }
+  }
+  ;
+
+
+
+</script>

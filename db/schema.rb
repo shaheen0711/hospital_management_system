@@ -9,7 +9,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20180802112151) do
+ActiveRecord::Schema.define(:version => 20180904052537) do
+
+  create_table "appointments", :force => true do |t|
+    t.integer  "doctor_id"
+    t.integer  "patient_id"
+    t.date     "appointment_date"
+    t.integer  "slot_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "department_id"
+  end
+
+  create_table "bedallocations", :force => true do |t|
+    t.integer  "room_id"
+    t.integer  "patient_id"
+    t.integer  "bed_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "beds", :force => true do |t|
     t.string   "bed_number"
@@ -18,6 +36,8 @@ ActiveRecord::Schema.define(:version => 20180802112151) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "beds", ["room_id"], :name => "index_by_room_id"
 
   create_table "departments", :force => true do |t|
     t.string   "department_name"
@@ -40,10 +60,16 @@ ActiveRecord::Schema.define(:version => 20180802112151) do
     t.datetime "updated_at"
   end
 
-  create_table "madical_reports", :force => true do |t|
+  create_table "medicalrecords", :force => true do |t|
     t.integer  "patient_id"
+    t.text     "doctor_observation"
+    t.text     "prescription"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "patients", :force => true do |t|
@@ -63,6 +89,15 @@ ActiveRecord::Schema.define(:version => 20180802112151) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "slots", :force => true do |t|
+    t.integer  "doctor_id"
+    t.time     "start_time"
+    t.time     "end_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "department_id"
   end
 
   create_table "users", :force => true do |t|

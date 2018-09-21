@@ -1,0 +1,30 @@
+<div class="breadcrumb"> <% make_breadcrumb %> 
+    <%= render_breadcrumbs %>
+</div>
+<div class="main_title"><h3>Add new bed</h3></div>
+<% if flash[:notice].present? %>
+  <p class="flash_msg"><%= flash[:notice] %></p>
+<% end %>
+  
+<% form_for :bed do |f| %>
+
+  <p>
+    <%= f.label :room_id %><br />
+    <%= f.text_field :room_id%>
+  </p>
+  
+  <p>
+    <%= f.label :bed_number %><br />
+    <%= f.text_field :bed_number %>
+  </p>
+  
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </p>
+  <p>
+      
+    <%= f.submit "Add", :class => "add" %>
+  </p>
+<% end %>
+

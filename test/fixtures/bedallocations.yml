@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  room_id: 1
+  patient_id: 1
+  bed_id: 1
+
+two:
+  room_id: 1
+  patient_id: 1
+  bed_id: 1

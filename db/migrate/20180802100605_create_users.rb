@@ -7,10 +7,12 @@ class CreateUsers < ActiveRecord::Migration
       t.string :hashed_password
       t.string :password_salt
       t.string :user_type
-      t.boolean :is_blocked
-      t.boolean :is_deleted
+      t.boolean :is_blocked, :default => false
+      t.boolean :is_deleted, :default => false 
 
       t.timestamps
+      
+#      add_index :users, [:user_type, :first_name], :name =>  "index by user_type", :unique => true
     end
   end
 

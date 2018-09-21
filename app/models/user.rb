@@ -2,18 +2,17 @@ require 'digest'
 class User < ActiveRecord::Base
   
   validates_presence_of  :first_name
-  validates_presence_of  :password
   validates_presence_of  :last_name
 
-  has_one  :patient, :dependent => :destroy
+  has_one  :patient, :dependent => :destroy 
   has_one  :doctor, :dependent => :destroy
-  
+ 
   attr_accessor :password, :role
   before_create :set_password
   
   has_attached_file :photo, :styles => { :small => "150x150>" },
-                  :url  => "/assets/products/:id/:style/:basename.:extension",
-                  :path => ":rails_root/public/assets/products/:id/:style/:basename.:extension"
+    :url  => "/assets/products/:id/:style/:basename.:extension",
+    :path => ":rails_root/public/assets/products/:id/:style/:basename.:extension"
 
   validates_attachment_size :photo, :less_than => 5.megabytes
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
@@ -31,11 +30,10 @@ class User < ActiveRecord::Base
   end
   
   def has_password?(submitted_password)
-   
     hashed_password == encrypt(submitted_password)
   end
   
-#  def self.authenticate(username, pwd)
+
   def self.authenticate(login_info)
     user = User.find_by_username(login_info[:username])
     if(user && user.has_password?(login_info[:password]))
@@ -44,34 +42,47 @@ class User < ActiveRecord::Base
       return nil
     end
   end
-
-
+  
   def role_name
-    return "#{t('admin')}" if self.user_type.downcase == 'admin'
-    return nil
+    case self.user_type.downcase
+    when 'admin'
+      return 'admin'
+    when 'patient'
+      return 'patient'
+    when 'doctor'
+      return 'doctor'
+    else
+      return nil
+    end
+    
   end
   
   def role_symbols
     prv = []
     case user_type.downcase
     when 'admin'
-      [:admin]
+      prv = [:admin]
+    when 'doctor'
+      prv = [:doctor]
+    when 'patient'
+      prv = [:patient]
     else
-      prv
+      prv = prv
     end
-#    privileges.map { |privilege| prv << privilege.name.underscore.to_sym } unless @privilge_symbols
+    prv
+    #    privileges.map { |privilege| prv << privilege.name.underscore.to_sym } unless @privilge_symbols
 
-#    @privilge_symbols ||= if admin?
-#      [:admin] + prv
-#    elsif student?
-#      [:student] + prv
-#    elsif employee?
-#      [:employee] + prv
-#    elsif parent?
-#      [:parent] + prv
-#    else
-#      prv
-#    end
+    #    @privilge_symbols ||= if admin?
+    #      [:admin] + prv
+    #    elsif student?
+    #      [:student] + prv
+    #    elsif employee?
+    #      [:employee] + prv
+    #    elsif parent?
+    #      [:parent] + prv
+    #    else
+    #      prv
+    #    end
   end
   private
 
