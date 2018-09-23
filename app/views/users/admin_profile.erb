@@ -2,6 +2,7 @@
     <%= render_breadcrumbs %>
 </div>
 <h3>Your personal details</h3>
+<div class="avatar"><%= image_tag @user.photo.url(:small), :class => "avatar" %></div>
 <table class="table table-striped table-bordered table-condensed">
     <tr><td><%=t('users.id')%></td><td><%= @user.id%></td></tr>
     <tr><td><%=t('users.first_name')%></td><td><%= @user.first_name%></td></tr>

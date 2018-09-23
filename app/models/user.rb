@@ -11,7 +11,8 @@ class User < ActiveRecord::Base
   before_create :set_password
   
   has_attached_file :photo, :styles => { :small => "150x150>" },
-    :url  => "/assets/products/:id/:style/:basename.:extension",
+   :url  => "/assets/products/:id/:style/:basename.:extension",
+    :default_url => "/assets/missing_avatar.jpeg",
     :path => ":rails_root/public/assets/products/:id/:style/:basename.:extension"
 
   validates_attachment_size :photo, :less_than => 5.megabytes

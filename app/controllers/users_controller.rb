@@ -11,8 +11,9 @@ class UsersController < ApplicationController
       user = User.authenticate(params[:user])
       if user.present?
         session[:user_id] = user.id
-        flash[:notice] = "Welcome, you successfully logged in." 
         redirect_to users_path
+        flash[:notice] = "Welcome #{user.first_name} ,you have successfull logged in." 
+       
       else
         flash.now[:notice] = "Invalid Username or password."       
       end

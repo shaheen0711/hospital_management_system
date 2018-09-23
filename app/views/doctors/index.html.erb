@@ -8,6 +8,9 @@
 <span class ="doctor_list_title">List of all Doctors </span>
 <%= button_to 'Add new Doctor', new_doctor_path, :class => "btn add-doctor"%>
 <%= button_to 'Create slot', new_slot_path,  :class => "btn create-slot"%><br><br>
+<% if @doctors.empty? %>
+  <div class="record">Doctors not available now</div> 
+<% else %>
 <table class="table table-striped table-bordered table-condensed">
     <tr><th>id</th> <th>Doctor Name</th><th>Edit/delete</th></tr>
     <% @doctors.each_with_index do |doctor,i| %>
@@ -22,3 +25,4 @@
       </tr>
     <% end %>  
 </table>
+<% end %>

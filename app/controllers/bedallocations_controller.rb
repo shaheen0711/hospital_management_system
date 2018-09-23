@@ -30,8 +30,15 @@ class BedallocationsController < ApplicationController
                             where  room_id = #{(params[:id])} and beds.id not in 
                             (select bed_id from bedallocations 
                             where bedallocations.bed_id = beds.id) group by beds.id")
-    render :update do |page|
+  #  unless @beds.blank?
+       render :update do |page|
       page.replace_html "bedallocation_bed_id", :partial => "beds_list"
     end
+    #else
+     # render :update do |page|
+       # page.replace_html "beds_booked" , :partial => "beds_booked"
+      #end
+   # end
   end
+
 end

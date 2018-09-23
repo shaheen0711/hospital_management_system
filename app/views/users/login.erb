@@ -6,7 +6,9 @@
 <div class="reg"> New Patient?
     <%= link_to "register", new_patient_path  %>
 </div></div>
+  
 <div class="login">
+    <div class="login_layout">
     <div class="form-group row">
         <% form_for :user, :url => {:action => "login"}, :method => :post do |f|  %>
           <div class="col-xs-2">
@@ -19,5 +21,6 @@
           </div><br>
           <p><%= submit_tag "Log in",  :class => "btn btn-success"%>
         <%  end %>
+    </div>
     </div>
 </div>

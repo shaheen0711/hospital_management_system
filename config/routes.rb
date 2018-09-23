@@ -31,7 +31,7 @@ ActionController::Routing::Routes.draw do |map|
     :member => {:create_slot => [:get, :post]}
   map.resources :appointments, 
       :member => {:show_pdf => [:get]},
-      :collection => {:doctor_list => [:get, :post], :slots_list => [:get, :post]}
+      :collection => {:doctor_list => [:get, :post], :slots_list => [:get, :post], :history => [:get, :post]}
   
   map.resources :medicalrecords, :member => {:show_pdf => [:get], :download_pdf => [:get]}
   

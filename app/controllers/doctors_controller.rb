@@ -3,7 +3,7 @@ class DoctorsController < ApplicationController
   filter_access_to :all  
 
   def index
-    @doctors = Doctor.all(:include => :user)
+    @doctors = Doctor.all(:include => [:user, :country])
   end
   
   def new

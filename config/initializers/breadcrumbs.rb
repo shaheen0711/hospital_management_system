@@ -4,12 +4,12 @@ Gretel::Crumbs.layout do
     link "Home", {:controller => "users", :action => "index"}
   end
   
-  crumb :patients_new do
+   crumb :patients_new do
     link "Patients", {:controller => "patients", :action => "new"}
     parent :root
   end
   
-  crumb :users_admin_profile do
+   crumb :users_admin_profile do
     link "Profile", {:controller => "users", :action => "admin_profile"}
     parent :root
   end
@@ -60,7 +60,7 @@ Gretel::Crumbs.layout do
     parent :rooms_index
   end
   
-  crumb :rooms_room_detail do
+    crumb :rooms_room_detail do
     link "Room detail", {:controller => "rooms", :action => "room_detail"}
     parent :rooms_index
   end
@@ -70,7 +70,7 @@ Gretel::Crumbs.layout do
     parent :rooms_room_detail
   end
   
-  crumb :rooms_csv_report do
+   crumb :rooms_csv_report do
     link "Beds", {:controller => "rooms", :action => "csv_report"}
     parent :rooms_index
   end
@@ -90,7 +90,7 @@ Gretel::Crumbs.layout do
   end
   
   
-  crumb :doctors_index do
+   crumb :doctors_index do
     link "Doctors", {:controller => "doctors", :action => "index"}
     parent :root
   end
@@ -126,30 +126,30 @@ Gretel::Crumbs.layout do
     parent :doctors_index
   end
   
-  crumb :slots_create do
+   crumb :slots_create do
     link "New slot", {:controller => "slots", :action => "create"}
     parent :doctors_index
   end
   
-  crumb :slots_show do
+   crumb :slots_show do
     link "Slot", {:controller => "slots", :action => "show"}
     parent :doctors_index
   end
   
-  crumb :patients_index do
+   crumb :patients_index do
     link "Patients", {:controller => "patients", :action => "index"}
     parent :root
   end
-  crumb :patients_create do
-    link "New slot", {:controller => "patients", :action => "create"}
-    parent :root
-  end
+  
   
   crumb :patients_edit do
     link "Edit Patient", {:controller => "patients", :action => "edit"}
     parent :patients_index
   end
- 
+  #crumb :student_profile do |student|
+  #    link student.full_name, {:controller=>"student",:action=>"profile",:id=>student.id}
+  #    parent :student_index
+  #  end
   crumb :patients_patient_detail do 
     link "Patient profile", {:controller => "patients", :action => "patient_detail"}
     parent :patients_index
@@ -164,13 +164,16 @@ Gretel::Crumbs.layout do
     link "Patients", {:controller => "doctors", :action => "all_patient"}
     parent :root
   end
-   
+  
+  
+  
+  
   crumb :medicalrecords_index do |patient|
     link "Patient history", {:controller => "medicalrecords", :action => "index"}
     parent :patients_patient_profile, patient
   end
   
-  crumb :medicalrecords_new do |patient|
+   crumb :medicalrecords_new do |patient|
     link "add patient record", {:controller => "medicalrecords", :action => "new"}
     parent  :medicalrecords_index, patient
   end
@@ -180,24 +183,24 @@ Gretel::Crumbs.layout do
     parent  :medicalrecords_index, patient
   end
   
-  crumb :medicalrecords_show do
+   crumb :medicalrecords_show do
     link "patient record", {:controller => "medicalrecords", :action => "show"}
     parent  :medicalrecords_index
   end
   
   
-  crumb :appointments_new do
+   crumb :appointments_new do
     link "Booking", {:controller => "appointments", :action => "new"}
     parent :root
   end
   
-  crumb :appointments_create do
+   crumb :appointments_create do
     link "New slot", {:controller => "appointments", :action => "create"}
     parent :root
   end
   
   
-  crumb :appointments_show do
+   crumb :appointments_show do
     link "Booking detail", {:controller => "appointments", :action => "show"}
     parent :appointments_new
   end
@@ -221,4 +224,15 @@ Gretel::Crumbs.layout do
     link "New slot", {:controller => "bedallocations", :action => "create"}
     parent :patients_index
   end
+  #  crumb :student_profile do |student|
+  #    link student.full_name, {:controller=>"student",:action=>"profile",:id=>student.id}
+  #    parent :student_index
+  #  end
+
+  #  crumb :student_reports do |student|
+  #    link I18n.t('report_center'), {:controller => "student", :action => "reports", :id => student.id}
+  #    parent :student_profile, student
+  #  end
+  
+
 end

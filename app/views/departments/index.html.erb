@@ -5,7 +5,9 @@
 <% if flash[:notice].present? %>
   <p class="flash_msg"><%= flash[:notice] %></p>
 <% end %>
-
+<% if @departments.empty? %>
+  <div class="record">Departments not available</div> 
+<% else %>
 <div class="department">
     <h3>List of All Department</h3>
     <%= button_to 'Add new Department', add_department_departments_path, :class => "btn add-department"%><br><br>
@@ -16,8 +18,8 @@
               <td><%= department.id %></td>
               <td><%= link_to  department.department_name , department_detail_department_path(department)%></td>
               <td><%= link_to  'edit',  edit_department_path(department)%>
-                  /<%= link_to  'delete', {:action => "delete_department", :id => department.id} %></td>
+                  /<%= link_to  'delete', {:action => "delete_department", :id => department.id}, :confirm => "Are you sure to delete. All depandecies will be delete" %></td>
           </tr>
         <% end %>
     </table>
-
+<% end %>

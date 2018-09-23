@@ -34,8 +34,34 @@ beds = Bed.create(:bed_number => "3", :description => "C" , :room_id => 6)
 
 
 medicalrecords = Medicalrecord.create(:patient_id => "18", :doctor_observation => "fever , bp low, cold", :prescription => "aaaaa,aaa,dd,,ddd")
+medicalrecords = Medicalrecord.create(:patient_id => "18", :doctor_observation => "fever , bp low, cold", :prescription => "aaaaa,aaa,dd,,ddd")
+
+bloodgroups = BloodGroup.create(:name => "A+")
+bloodgroups = BloodGroup.create(:name => "B+")
+bloodgroups = BloodGroup.create(:name => "O+")
+bloodgroups = BloodGroup.create(:name => "O-")
+bloodgroups = BloodGroup.create(:name => "A-")
+bloodgroups = BloodGroup.create(:name => "A+")
+bloodgroups = BloodGroup.create(:name => "AB")
 
 
 
 
-medicalrecords = Medicalrecord.create(:patient_id => "18", :doctor_observation => "fever , bp low, cold", :prescription => "aaaaa,aaa,dd,,ddd", :photo => "images.jpeg")
+
+countries = Country.create(:name => "Algeria")
+countries = Country.create(:name => "Argentina")
+countries = Country.create(:name => "Brazil")
+countries = Country.create(:name => "Bhutan")
+countries = Country.create(:name => "Canada")
+countries = Country.create(:name => "China")
+countries = Country.create(:name => "Denmark")
+countries = Country.create(:name => "Egypt")
+countries = Country.create(:name => "France")
+countries = Country.create(:name => "Germany")
+countries = Country.create(:name => "Hungary")
+countries = Country.create(:name => "Iceland")
+countries = Country.create(:name => "India")
+countries = Country.create(:name => "Japan")
+countries = Country.create(:name => "Nepal")
+
+

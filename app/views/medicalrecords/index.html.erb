@@ -2,7 +2,9 @@
     <% breadcrumb :medicalrecords_index, @patient %> 
     <%= render_breadcrumbs %>
 </div>
-
+<% if @medicalrecords.empty? %>
+  <div class="record">Medicalrecords not available now</div> 
+<% else %>
 <h4>Patient history</h4>
 <table class="table table-striped table-bordered table-condensed">
     <tr>
@@ -22,3 +24,4 @@
     <% end %>
 </table>
 <%= link_to 'New record', new_patient_medicalrecord_path(@patient), :class => "records" %>
+<% end %>

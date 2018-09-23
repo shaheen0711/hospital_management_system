@@ -1,11 +1,12 @@
-<% if flash[:notice].present? %>
-  <p class="flash_msg"><%= flash[:notice] %></p>
-<% end %>
+
+   <div class="home_page_heading">
   <div class="current_user">Hi <%= link_to   @current_user.first_name+" "+@current_user.last_name,  admin_profile_users_path %></div>
 <div class="profile">
      <%= link_to "Logout", logout_users_path%>
-</div><br><br><br>
-
+</div></div>
+<% if flash[:notice].present? %>
+  <p class="flash_msg"><%= flash[:notice] %></p>
+<% end %>
 <% if permitted_to? :index, :departments %>
   <div class="manage_department">	
       <a class="mng_department_link" href="departments">Manage Departments</a>
@@ -36,7 +37,7 @@
 
 <% if permitted_to? :all_patient, :doctors %>
   <div class="book_appointment_main">	
-      <%= link_to "All Patient", all_patient_doctors_path%>
+      <%= link_to "All Patients", all_patient_doctors_path%>
   </div>
 <% end %>
 
@@ -52,3 +53,10 @@
       <%= link_to "Medical Record", medical_record_patients_path%>
   </div>
 <% end %>
+  
+  <% if permitted_to? :new, :patients %>
+  <div class="book_appointment_main">	
+      <%= link_to "Appointment history",  history_appointments_path%>
+  </div>
+<% end %>
+  

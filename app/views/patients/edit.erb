@@ -61,7 +61,7 @@
       <div class="form-group">
           <label class="control-label col-sm-2">Blood group:</label>
           <div class="col-sm-4">
-              <%= f.text_field :blood_group, :class => "form-control" , :placeholder => "A+"%><br>
+              <%= f.select :blood_group_id, BloodGroup.all.collect {|x| [x.name, x.id.to_i]}, {:include_blank => "choose blood group"}, :class => "form-control" , :placeholder => "enter contact number"%><br>
               <%= f.submit "update" , :class => "btn btn-success"%><br>
           </div>
       </div>

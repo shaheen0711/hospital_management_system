@@ -2,6 +2,9 @@
     <% make_breadcrumb %> 
     <%= render_breadcrumbs %>
 </div>
+<% if @patient.medicalrecords.empty? %>
+  <div class="record">You don't have any medical records now</div> 
+<% else %>
 <h4>Medical records</h4>
 <table class="table table-striped table-bordered table-condensed">
     <tr><th>Record no.</th><th>Doctor observation</th> <th>Prescription</th><th>report</th></tr>
@@ -15,3 +18,4 @@
     <% end %>
 </table>
 <%= link_to "Download all records", show_pdf_patient_path(@patient)%>
+<% end %>

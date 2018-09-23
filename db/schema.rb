@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20180904052537) do
+ActiveRecord::Schema.define(:version => 20180922170155) do
 
   create_table "appointments", :force => true do |t|
     t.integer  "doctor_id"
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(:version => 20180904052537) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "department_id"
+  end
+
+  create_table "bed_allocations", :force => true do |t|
+    t.integer  "room_id"
+    t.integer  "patient_id"
+    t.integer  "bed_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "bedallocations", :force => true do |t|
@@ -39,6 +47,25 @@ ActiveRecord::Schema.define(:version => 20180904052537) do
 
   add_index "beds", ["room_id"], :name => "index_by_room_id"
 
+  create_table "blood_groups", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "bloodgroups", :force => true do |t|
+    t.string   "type"
+    t.boolean  "available"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "countries", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "departments", :force => true do |t|
     t.string   "department_name"
     t.datetime "created_at"
@@ -46,16 +73,30 @@ ActiveRecord::Schema.define(:version => 20180904052537) do
   end
 
   create_table "doctors", :force => true do |t|
-    t.integer  "user_id"
+    t.integer  "user_id",        :null => false
     t.integer  "department_id"
     t.string   "qualification"
     t.string   "experience"
-    t.string   "nationality"
     t.date     "date_of_birth"
     t.string   "address"
     t.string   "contact_number"
     t.string   "email"
     t.string   "gender"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "country_id"
+  end
+
+  create_table "madical_reports", :force => true do |t|
+    t.integer  "patient_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "medical_records", :force => true do |t|
+    t.integer  "patient_id"
+    t.text     "doctor_observation"
+    t.text     "prescription"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -79,9 +120,9 @@ ActiveRecord::Schema.define(:version => 20180904052537) do
     t.string   "contact_number"
     t.string   "email"
     t.string   "gender"
-    t.string   "blood_group"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "blood_group_id"
   end
 
   create_table "rooms", :force => true do |t|

@@ -52,4 +52,9 @@ class AppointmentsController < ApplicationController
       page.replace_html "appointment_slot_id"  , :partial => "slot_list"
     end
   end
+  
+  def history
+    @appointments = Appointment.find_all_by_patient_id(@current_user.patient.id)
+  end
 end
+

@@ -45,6 +45,9 @@
     padding-left: 380px;
     color:blue;   
 }
+.login_layout{
+    
+}
 .add-department{
     float:right;
     color:black;
@@ -163,4 +166,15 @@
 .department h3{
     float:left;
     font-size:22px;
+}
+.avatar{
+        width: 30%;
+        margin-bottom:6px;
+}
+.record{
+    text-align: center;
+    border: 2px solid red;
+    padding: 9px;
+    width: calc(100% - 600px);
+    margin-left:25%;
 }

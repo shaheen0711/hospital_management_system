@@ -2,7 +2,8 @@ class Doctor < ActiveRecord::Base
   attr_accessor :first_name, :last_name, :photo
  
   belongs_to  :user
-  belongs_to 	:department 
+  belongs_to 	:department
+  belongs_to  :country
   has_many    :appointments
   has_many    :slots
   
@@ -15,7 +16,7 @@ class Doctor < ActiveRecord::Base
   validates_presence_of  :date_of_birth 
   validates_presence_of  :email, :format => :VALID_EMAIL_REGEX
   validates_presence_of  :gender
-  validates_presence_of  :nationality
+  
   validates_presence_of  :qualification
   validates_presence_of  :department_id
 
@@ -36,7 +37,6 @@ class Doctor < ActiveRecord::Base
   end
   
 end
-
 
 def update_user
   user.first_name = self.first_name
