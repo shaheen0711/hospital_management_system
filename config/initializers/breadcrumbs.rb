@@ -146,10 +146,7 @@ Gretel::Crumbs.layout do
     link "Edit Patient", {:controller => "patients", :action => "edit"}
     parent :patients_index
   end
-  #crumb :student_profile do |student|
-  #    link student.full_name, {:controller=>"student",:action=>"profile",:id=>student.id}
-  #    parent :student_index
-  #  end
+ 
   crumb :patients_patient_detail do 
     link "Patient profile", {:controller => "patients", :action => "patient_detail"}
     parent :patients_index
@@ -163,11 +160,7 @@ Gretel::Crumbs.layout do
   crumb :doctors_all_patient do 
     link "Patients", {:controller => "doctors", :action => "all_patient"}
     parent :root
-  end
-  
-  
-  
-  
+  end 
   crumb :medicalrecords_index do |patient|
     link "Patient history", {:controller => "medicalrecords", :action => "index"}
     parent :patients_patient_profile, patient
@@ -198,7 +191,10 @@ Gretel::Crumbs.layout do
     link "New slot", {:controller => "appointments", :action => "create"}
     parent :root
   end
-  
+   crumb :appointments_history do
+    link "History", {:controller => "appointments", :action => "history"}
+    parent :root
+  end
   
    crumb :appointments_show do
     link "Booking detail", {:controller => "appointments", :action => "show"}
@@ -224,15 +220,5 @@ Gretel::Crumbs.layout do
     link "New slot", {:controller => "bedallocations", :action => "create"}
     parent :patients_index
   end
-  #  crumb :student_profile do |student|
-  #    link student.full_name, {:controller=>"student",:action=>"profile",:id=>student.id}
-  #    parent :student_index
-  #  end
-
-  #  crumb :student_reports do |student|
-  #    link I18n.t('report_center'), {:controller => "student", :action => "reports", :id => student.id}
-  #    parent :student_profile, student
-  #  end
-  
-
+ 
 end
