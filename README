@@ -1,1 +1,52 @@
 
+Hospital Management System
+
+Hospital management system is a web based application which automates hospital management process, hence the name. This application is built using ruby on rails 2.3.5, bootstrap, jquery, html, mysql etc. The features provided by the application are following,
+
+1.System access for Patient, Doctor and admin of hospital, authentication and authorization for all the users.
+
+2.Patient registration and tracking their details in a database and pateint can book online appoinments.
+
+3.Empowering doctors operating on a patient by providing them all the details like which other doctors and staff are working on a patient and the details of their treatment.
+
+4.Invoice generation.
+
+5.Doctors can upload the reports and paitent can download the Reports.
+
+6.You can do this finctionality accordding  to user type.
+
+ Admin:
+ 	a.Admin user creates departments, rooms, beds, doctor (user) profiles.
+	b.Send login details to doctor (when new record is created) with credentials via email
+	c.Admin user make doctor availability as slots for various doctors, slots can be different duration that can vary from one doctor 		  to another.
+	d.Admin is able to fetch room utilisation reports as CSV under rooms module.
+
+ Doctors:
+	a.Doctor profile have basic information like first name(*), middle name, last name(*), photo, date of birth(*), contact number, 	  email(*), nationality, gender(*), qualifications(*), experience(*).
+	b.When patient visits doctor, doctor shall open patient profile, and enter the patient details as comments, patient condition, 		  medication given, any supporting documents like reports. All these info is visible to patient as their personal medical record, same 		  given a download option as PDF. Based on doctor recommendation if patient should be admitted and hence room allocation has to be 		  administered based on room availability.
+
+ Patients:
+	a.Patients can register to system themselves (open registration). Patient registration will include details like first name(*), middle 		  name, last name(*), date of birth(*), address, contact number(*), email, gender(*), blood group(*) and photo. 
+	b.Patients can book appointment with a doctor from a department based of slot availability.
+
+
+To explore the application, by default one user will be created with admin priviledges such as, creating other users (doctors and staff). username and password of the default admin user are, “shaheen@gmail.com” and “abc123” respectively.
+
+
+How to setup this application locally:
+
+Pre-requisite Ruby on rails 2.3.5 stack is installed and working perfectly fine on your system.
+
+Steps to setup the application:
+
+check out the code for the repository.
+
+Open terminal prompt (Ubuntu) and navigate to the parent folder in which you checked out the code, and then execute following cmds
+
+(a) rake db:create
+(b) rake db:migrate
+(c) rake db:seed
+(d) start the server - rails server
+now open the browser and navigate to URL => localhost:3000/login.
+
+*Note this application is continously being improved, please suggest me if any improvements can be made.
