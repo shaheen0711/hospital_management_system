@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   end
 
   def login
+
     if request.post?
       user = User.authenticate(params[:user])
       if user.present?
@@ -17,6 +18,7 @@ class UsersController < ApplicationController
         flash.now[:notice] = "Invalid Username or password."       
       end
     else
+      p "000"
     end    
   end
   
