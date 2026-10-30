@@ -1,6 +1,6 @@
 class DoctorsController < ApplicationController
-  before_filter :login_required
-  filter_access_to :all  
+  before_action :login_required
+  filter_access_to :all if defined?(filter_access_to)
 
   def index
     @doctors = Doctor.all(:include => :user)

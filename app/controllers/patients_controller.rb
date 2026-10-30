@@ -1,6 +1,6 @@
 class PatientsController < ApplicationController
-  before_filter :login_required, :except => [:new, :create]
-  filter_access_to :all, :except => [:new, :create]
+  before_action :login_required, except: [:new, :create]
+  filter_access_to :all, :except => [:new, :create] if defined?(filter_access_to)
 
   def index
     @patients = Patient.all(:include => :user)

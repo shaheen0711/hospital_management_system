@@ -1,0 +1,27 @@
+<h2>Register</h2>
+
+<%= form_with scope: :user, url: signup_users_path, method: :post, local: true do |f| %>
+  <div>
+    <%= f.label :first_name %><br>
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div>
+    <%= f.label :last_name %><br>
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div>
+    <%= f.label :username %><br>
+    <%= f.text_field :username %>
+  </div>
+
+  <div>
+    <%= f.label :password %><br>
+    <%= f.password_field :password %>
+  </div>
+
+  <div>
+    <%= f.submit "Create account" %>
+  </div>
+<% end %>
