@@ -8,5 +8,10 @@ class BrowsingTest < ActionDispatch::IntegrationTest
     get login_users_path
     assert_response :success
     assert_select "form[action='#{login_users_path}']"
+
+    stylesheet_path = css_select("link[rel='stylesheet']").first["href"]
+    get stylesheet_path
+    assert_response :success
+    assert_includes response.body, "font-family"
   end
 end
