@@ -5,7 +5,7 @@ class AppointmentsController < ApplicationController
   end
   
   def create
-    @appointment = Appointment.new(params[:appointment])
+    @appointment = Appointment.new(appointment_params)
     if @appointment.save
       redirect_to @appointment
       flash[:notice] = "Appointment booked." 
@@ -13,6 +13,7 @@ class AppointmentsController < ApplicationController
       render 'new'
       flash[:notice] = "your appointment is not booked please try again."
     end
+
   end
   
   def new
@@ -43,22 +44,24 @@ class AppointmentsController < ApplicationController
   end
   
   def slots_list
-    @slots = Slot.find_by_sql("
-                              
-SELECT slots.id, slots.start_time, slots.end_time from slots
-                                inner join doctors ON
-                                doctors.id = slots.doctor_id
-                                where doctor_id = #{(params[:id])}  
-                                and slots.id not in 
-                                (select slot_id from appointments 
-                                where doctor_id = #{(params[:id])} 
-                                and appointment_date = '#{(params[:date])}')
-                                group by slots.id")
+    booked_slot_ids = Appointment.where(
+      doctor_id: params[:id],
+      appointment_date: params[:date]
+    ).select(:slot_id)
+    @slots = Slot.where(doctor_id: params[:id])
+                 .where.not(id: booked_slot_ids)
+                 .select(:id, :start_time, :end_time)
       render :update do |page|
         page.replace_html "appointment_slot_id"  , :partial => "slot_list"
       end
     end
 
-  
-  
+  private
+
+  def appointment_params
+    params.require(:appointment).permit(
+      :doctor_id, :patient_id, :department_id, :slot_id, :appointment_date,
+      :"appointment_date(1i)", :"appointment_date(2i)", :"appointment_date(3i)"
+    )
+  end
 end

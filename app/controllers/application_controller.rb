@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
   private
 
   def set_authorization_user
-    Authorization.current_user = current_user if defined?(Authorization)
+    @current_user = current_user
+    Authorization.current_user = @current_user if defined?(Authorization)
   end
 end

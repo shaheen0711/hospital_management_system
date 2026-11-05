@@ -33,8 +33,8 @@ Rails.application.routes.draw do
       get :show_pdf
     end
     collection do
-      get :new_patient
-      post :new_patient
+      get :new_patient, action: :new
+      post :new_patient, action: :create
       get :edit_patient
       post :edit_patient
       get :medical_record

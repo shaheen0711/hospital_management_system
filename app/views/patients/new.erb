@@ -1,14 +1,19 @@
-<div class="breadcrumb"> <% make_breadcrumb %> 
-    <%= render_breadcrumbs %>
-</div>
 <% if flash[:notice].present? %>
   <p class="flash_msg"><%= flash[:notice] %></p>
 <% end %>
 <br>
 <p>Already registered? You can <a href="users/login">log in here.</a></p>
 <div class="register">
-  <% form_for @patient, :html => { :multipart => true } do |f|  %>
-      <%= f.error_messages%>
+  <%= form_with model: @patient, multipart: true, local: true do |f| %>
+      <% if @patient.errors.any? %>
+        <div class="errors">
+          <ul>
+            <% @patient.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
       <div class="form-group">
           <label class="control-label col-sm-2">First name<span class ="star">*</span>:</label>
           <div class="col-sm-4">
@@ -25,7 +30,7 @@
               <label class="control-label col-sm-2">Date of birth<span class ="star">*</span>:</label>
               <div class="col-sm-4">
                   <div class='input-group date' id='datetimepicker3'>
-                      <%= f.date_select :date_of_birth,{:start_year =>1980, :end_year =>  Date.current.year},  html_options = {:class => "form-control"} %>
+                      <%= f.date_field :date_of_birth, class: "form-control" %>
                   </div>
               </div>
           </div>
