@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  
-  before_filter :login_required, :except => [:login, :signup, :change_password, :update_password, :logout ]  
+
+  before_action :login_required, except: [:login, :signup, :change_password, :update_password, :logout]
 
   def index
     @user = @current_user
@@ -20,6 +20,21 @@ class UsersController < ApplicationController
     else
       p "000"
     end    
+  end
+
+  def signup
+    @user = User.new
+
+    if request.post?
+      @user = User.new(params[:user])
+      @user.user_type = "patient"
+      if @user.save
+        flash[:notice] = "Registration successful. Please log in."
+        redirect_to login_users_path
+      else
+        flash.now[:alert] = "Please correct the errors below."
+      end
+    end
   end
   
   def logout    

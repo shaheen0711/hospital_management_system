@@ -1,22 +1,19 @@
 require 'digest'
-class User < ActiveRecord::Base
-  
+class User < ApplicationRecord
+
+  has_one_attached :photo
+
+  validates :username, presence: true, uniqueness: true
+
   validates_presence_of  :first_name
   validates_presence_of  :last_name
 
-  has_one  :patient, :dependent => :destroy 
+  has_one  :patient, :dependent => :destroy
   has_one  :doctor, :dependent => :destroy
- 
+
   attr_accessor :password, :role
   before_create :set_password
-  
-  has_attached_file :photo, :styles => { :small => "150x150>" },
-    :url  => "/assets/products/:id/:style/:basename.:extension",
-    :path => ":rails_root/public/assets/products/:id/:style/:basename.:extension"
 
-  validates_attachment_size :photo, :less_than => 5.megabytes
-  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
-  
   def set_password
     self.password_salt = random_string(8) if self.password_salt == nil
     self.hashed_password = Digest::SHA1.hexdigest(self.password_salt + self.password) unless self.password.nil?

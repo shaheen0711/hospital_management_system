@@ -264647,3 +264647,542 @@ Processing UsersController#login (for 127.0.0.1 at 2018-09-04 12:53:47) [GET]
 Rendering template within layouts/application
 Rendering users/login
 Completed in 4ms (View: 3, DB: 0) | 200 OK [http://localhost/users/login]
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "appointments" /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "appointments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "doctor_id" integer, "patient_id" integer, "appointment_date" date, "slot_id" integer, "created_at" datetime(6), "updated_at" datetime(6), "department_id" integer) /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "bedallocations" /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "bedallocations" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "room_id" integer, "patient_id" integer, "bed_id" integer, "created_at" datetime(6), "updated_at" datetime(6)) /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "beds" /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "beds" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "bed_number" varchar, "description" text, "room_id" integer, "created_at" datetime(6), "updated_at" datetime(6)) /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_by_room_id" ON "beds" ("room_id") /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "departments" /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "departments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "department_name" varchar, "created_at" datetime(6), "updated_at" datetime(6)) /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "doctors" /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "doctors" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "department_id" integer, "qualification" varchar, "experience" varchar, "nationality" varchar, "date_of_birth" date, "address" varchar, "contact_number" varchar, "email" varchar, "gender" varchar, "created_at" datetime(6), "updated_at" datetime(6)) /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "medicalrecords" /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "medicalrecords" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "patient_id" integer, "doctor_observation" text, "prescription" text, "created_at" datetime(6), "updated_at" datetime(6), "photo_file_name" varchar, "photo_content_type" varchar, "photo_file_size" integer, "photo_updated_at" datetime(6)) /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "patients" /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "patients" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "date_of_birth" date, "address" varchar, "contact_number" varchar, "email" varchar, "gender" varchar, "blood_group" varchar, "created_at" datetime(6), "updated_at" datetime(6)) /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "rooms" /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "rooms" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "room_number" varchar, "description" text, "created_at" datetime(6), "updated_at" datetime(6)) /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "slots" /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "slots" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "doctor_id" integer, "start_time" time, "end_time" time, "created_at" datetime(6), "updated_at" datetime(6), "department_id" integer) /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "username" varchar, "hashed_password" varchar, "password_salt" varchar, "user_type" varchar, "is_blocked" boolean DEFAULT FALSE, "is_deleted" boolean DEFAULT FALSE, "created_at" datetime(6), "updated_at" datetime(6), "photo_file_name" varchar, "photo_content_type" varchar, "photo_file_size" integer, "photo_updated_at" datetime(6)) /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY) /*application='HospitalManagementSystem'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20180904052537) /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20180831052245),
+(20180830075223),
+(20180829121455),
+(20180829104637),
+(20180827095454),
+(20180822112238),
+(20180820063342),
+(20180817100741),
+(20180817100420),
+(20180802112151),
+(20180802101829),
+(20180802101703),
+(20180802101620),
+(20180802101352),
+(20180802101151),
+(20180802100605); /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='HospitalManagementSystem'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HospitalManagementSystem'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2026-10-30 09:56:54.851234', '2026-10-30 09:56:54.851235') RETURNING "key" /*application='HospitalManagementSystem'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HospitalManagementSystem'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'schema_sha1' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HospitalManagementSystem'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '4cb87036f17e0d3ff4285e2a6d4a22053d8640c9', '2026-10-30 09:56:54.852222', '2026-10-30 09:56:54.852222') RETURNING "key" /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "appointments" /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "appointments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "doctor_id" integer, "patient_id" integer, "appointment_date" date, "slot_id" integer, "created_at" datetime(6), "updated_at" datetime(6), "department_id" integer) /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "bedallocations" /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "bedallocations" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "room_id" integer, "patient_id" integer, "bed_id" integer, "created_at" datetime(6), "updated_at" datetime(6)) /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "beds" /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "beds" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "bed_number" varchar, "description" text, "room_id" integer, "created_at" datetime(6), "updated_at" datetime(6)) /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_by_room_id" ON "beds" ("room_id") /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "departments" /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "departments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "department_name" varchar, "created_at" datetime(6), "updated_at" datetime(6)) /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "doctors" /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "doctors" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "department_id" integer, "qualification" varchar, "experience" varchar, "nationality" varchar, "date_of_birth" date, "address" varchar, "contact_number" varchar, "email" varchar, "gender" varchar, "created_at" datetime(6), "updated_at" datetime(6)) /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "medicalrecords" /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "medicalrecords" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "patient_id" integer, "doctor_observation" text, "prescription" text, "created_at" datetime(6), "updated_at" datetime(6), "photo_file_name" varchar, "photo_content_type" varchar, "photo_file_size" integer, "photo_updated_at" datetime(6)) /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "patients" /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "patients" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "date_of_birth" date, "address" varchar, "contact_number" varchar, "email" varchar, "gender" varchar, "blood_group" varchar, "created_at" datetime(6), "updated_at" datetime(6)) /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "rooms" /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "rooms" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "room_number" varchar, "description" text, "created_at" datetime(6), "updated_at" datetime(6)) /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "slots" /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "slots" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "doctor_id" integer, "start_time" time, "end_time" time, "created_at" datetime(6), "updated_at" datetime(6), "department_id" integer) /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "username" varchar, "hashed_password" varchar, "password_salt" varchar, "user_type" varchar, "is_blocked" boolean DEFAULT FALSE, "is_deleted" boolean DEFAULT FALSE, "created_at" datetime(6), "updated_at" datetime(6), "photo_file_name" varchar, "photo_content_type" varchar, "photo_file_size" integer, "photo_updated_at" datetime(6)) /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY) /*application='HospitalManagementSystem'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20180904052537) /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20180831052245),
+(20180830075223),
+(20180829121455),
+(20180829104637),
+(20180827095454),
+(20180822112238),
+(20180820063342),
+(20180817100741),
+(20180817100420),
+(20180802112151),
+(20180802101829),
+(20180802101703),
+(20180802101620),
+(20180802101352),
+(20180802101151),
+(20180802100605); /*application='HospitalManagementSystem'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='HospitalManagementSystem'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HospitalManagementSystem'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2026-10-30 09:56:54.863481', '2026-10-30 09:56:54.863481') RETURNING "key" /*application='HospitalManagementSystem'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HospitalManagementSystem'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.0ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'test', "updated_at" = '2026-10-30 09:56:54.864163' WHERE "ar_internal_metadata"."key" = 'environment' /*application='HospitalManagementSystem'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'schema_sha1' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HospitalManagementSystem'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '4cb87036f17e0d3ff4285e2a6d4a22053d8640c9', '2026-10-30 09:56:54.864553', '2026-10-30 09:56:54.864554') RETURNING "key" /*application='HospitalManagementSystem'*/[0m
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+[ActionDispatch::HostAuthorization::DefaultResponseApp] Blocked hosts: www.example.com
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+[ActionDispatch::HostAuthorization::DefaultResponseApp] Blocked hosts: www.example.com
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+[ActionDispatch::HostAuthorization::DefaultResponseApp] Blocked hosts: www.example.com
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+[ActionDispatch::HostAuthorization::DefaultResponseApp] Blocked hosts: www.example.com
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+Started GET "/users/login" for 127.0.0.1 at 2026-10-30 15:32:24 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HospitalManagementSystem'*/[0m
+Processing by UsersController#login as HTML
+Completed 404 Not Found in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+AbstractController::ActionNotFound (The signup action could not be found for the :login_required
+callback on UsersController, but it is listed in the controller's
+:except option.
+
+Raising for missing callback actions is a new default in Rails 7.1, if you'd
+like to turn this off you can delete the option from the environment configurations
+or set `config.action_controller.raise_on_missing_callback_actions` to `false`.
+):
+  
+actionpack (8.1.4) lib/abstract_controller/callbacks.rb:64:in `match?'
+activesupport (8.1.4) lib/active_support/callbacks.rb:391:in `block in inverted_lambda'
+activesupport (8.1.4) lib/active_support/callbacks.rb:178:in `block in call'
+activesupport (8.1.4) lib/active_support/callbacks.rb:178:in `all?'
+activesupport (8.1.4) lib/active_support/callbacks.rb:178:in `call'
+activesupport (8.1.4) lib/active_support/callbacks.rb:560:in `block in invoke_before'
+activesupport (8.1.4) lib/active_support/callbacks.rb:560:in `each'
+activesupport (8.1.4) lib/active_support/callbacks.rb:560:in `invoke_before'
+activesupport (8.1.4) lib/active_support/callbacks.rb:109:in `run_callbacks'
+actionpack (8.1.4) lib/abstract_controller/callbacks.rb:266:in `process_action'
+actionpack (8.1.4) lib/action_controller/metal/rescue.rb:36:in `process_action'
+actionpack (8.1.4) lib/action_controller/metal/instrumentation.rb:76:in `block in process_action'
+activesupport (8.1.4) lib/active_support/notifications.rb:210:in `block in instrument'
+activesupport (8.1.4) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (8.1.4) lib/active_support/notifications.rb:210:in `instrument'
+actionpack (8.1.4) lib/action_controller/metal/instrumentation.rb:75:in `process_action'
+actionpack (8.1.4) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (8.1.4) lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+actionpack (8.1.4) lib/abstract_controller/base.rb:154:in `process'
+actionview (8.1.4) lib/action_view/rendering.rb:40:in `process'
+actionpack (8.1.4) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (8.1.4) lib/action_controller/metal.rb:335:in `dispatch'
+actionpack (8.1.4) lib/action_dispatch/routing/route_set.rb:65:in `dispatch'
+actionpack (8.1.4) lib/action_dispatch/routing/route_set.rb:50:in `serve'
+actionpack (8.1.4) lib/action_dispatch/journey/router.rb:35:in `block in serve'
+actionpack (8.1.4) lib/action_dispatch/journey/router.rb:86:in `block in recognize'
+actionpack (8.1.4) lib/action_dispatch/journey/router.rb:66:in `each'
+actionpack (8.1.4) lib/action_dispatch/journey/router.rb:66:in `recognize'
+actionpack (8.1.4) lib/action_dispatch/journey/router.rb:31:in `serve'
+actionpack (8.1.4) lib/action_dispatch/routing/route_set.rb:906:in `call'
+railties (8.1.4) lib/rails/engine/lazy_route_set.rb:93:in `call'
+rack (3.2.7) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.2.7) lib/rack/etag.rb:29:in `call'
+rack (3.2.7) lib/rack/conditional_get.rb:31:in `call'
+rack (3.2.7) lib/rack/head.rb:15:in `call'
+actionpack (8.1.4) lib/action_dispatch/http/content_security_policy.rb:38:in `call'
+rack-session (2.1.2) lib/rack/session/abstract/id.rb:274:in `context'
+rack-session (2.1.2) lib/rack/session/abstract/id.rb:268:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/cookies.rb:708:in `call'
+activerecord (8.1.4) lib/active_record/migration.rb:671:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (8.1.4) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (8.1.4) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/executor.rb:20:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.3.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.3.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.3.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.3.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (8.1.4) lib/rails/rack/logger.rb:41:in `call_app'
+railties (8.1.4) lib/rails/rack/logger.rb:29:in `call'
+propshaft (1.3.2) lib/propshaft/quiet_assets.rb:11:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/remote_ip.rb:98:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/request_id.rb:34:in `call'
+rack (3.2.7) lib/rack/method_override.rb:28:in `call'
+rack (3.2.7) lib/rack/runtime.rb:24:in `call'
+activesupport (8.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:30:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (8.1.4) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (8.1.4) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/executor.rb:20:in `call'
+propshaft (1.3.2) lib/propshaft/server.rb:37:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.2.7) lib/rack/sendfile.rb:131:in `call'
+railties (8.1.4) lib/rails/engine.rb:534:in `call'
+rack-test (2.3.0) lib/rack/test.rb:375:in `process_request'
+rack-test (2.3.0) lib/rack/test.rb:153:in `request'
+actionpack (8.1.4) lib/action_dispatch/testing/integration.rb:298:in `process'
+actionpack (8.1.4) lib/action_dispatch/testing/integration.rb:19:in `get'
+railties (8.1.4) lib/rails/commands/runner/runner_command.rb:49:in `<main>'
+railties (8.1.4) lib/rails/commands/runner/runner_command.rb:49:in `eval'
+railties (8.1.4) lib/rails/commands/runner/runner_command.rb:49:in `block in perform'
+activesupport (8.1.4) lib/active_support/execution_wrapper.rb:91:in `wrap'
+railties (8.1.4) lib/rails/commands/runner/runner_command.rb:70:in `conditional_executor'
+railties (8.1.4) lib/rails/commands/runner/runner_command.rb:48:in `perform'
+thor (1.5.0) lib/thor/command.rb:28:in `run'
+thor (1.5.0) lib/thor/invocation.rb:127:in `invoke_command'
+railties (8.1.4) lib/rails/command/base.rb:176:in `invoke_command'
+thor (1.5.0) lib/thor.rb:538:in `dispatch'
+railties (8.1.4) lib/rails/command/base.rb:71:in `perform'
+railties (8.1.4) lib/rails/command.rb:65:in `block in invoke'
+railties (8.1.4) lib/rails/command.rb:143:in `with_argv'
+railties (8.1.4) lib/rails/command.rb:63:in `invoke'
+railties (8.1.4) lib/rails/commands.rb:18:in `<main>'
+/Users/shaheenghazala/.rbenv/versions/3.3.11/lib/ruby/3.3.0/bundled_gems.rb:69:in `require'
+/Users/shaheenghazala/.rbenv/versions/3.3.11/lib/ruby/3.3.0/bundled_gems.rb:69:in `block (2 levels) in replace_require'
+bootsnap (1.26.1) lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:33:in `require'
+bin/rails:4:in `<main>'
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+Started GET "/users/login" for 127.0.0.1 at 2026-10-30 15:32:30 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HospitalManagementSystem'*/[0m
+Processing by UsersController#login as HTML
+Completed 404 Not Found in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+AbstractController::ActionNotFound (The signup action could not be found for the :login_required
+callback on UsersController, but it is listed in the controller's
+:except option.
+
+Raising for missing callback actions is a new default in Rails 7.1, if you'd
+like to turn this off you can delete the option from the environment configurations
+or set `config.action_controller.raise_on_missing_callback_actions` to `false`.
+):
+  
+actionpack (8.1.4) lib/abstract_controller/callbacks.rb:64:in `match?'
+activesupport (8.1.4) lib/active_support/callbacks.rb:391:in `block in inverted_lambda'
+activesupport (8.1.4) lib/active_support/callbacks.rb:178:in `block in call'
+activesupport (8.1.4) lib/active_support/callbacks.rb:178:in `all?'
+activesupport (8.1.4) lib/active_support/callbacks.rb:178:in `call'
+activesupport (8.1.4) lib/active_support/callbacks.rb:560:in `block in invoke_before'
+activesupport (8.1.4) lib/active_support/callbacks.rb:560:in `each'
+activesupport (8.1.4) lib/active_support/callbacks.rb:560:in `invoke_before'
+activesupport (8.1.4) lib/active_support/callbacks.rb:109:in `run_callbacks'
+actionpack (8.1.4) lib/abstract_controller/callbacks.rb:266:in `process_action'
+actionpack (8.1.4) lib/action_controller/metal/rescue.rb:36:in `process_action'
+actionpack (8.1.4) lib/action_controller/metal/instrumentation.rb:76:in `block in process_action'
+activesupport (8.1.4) lib/active_support/notifications.rb:210:in `block in instrument'
+activesupport (8.1.4) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (8.1.4) lib/active_support/notifications.rb:210:in `instrument'
+actionpack (8.1.4) lib/action_controller/metal/instrumentation.rb:75:in `process_action'
+actionpack (8.1.4) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (8.1.4) lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+actionpack (8.1.4) lib/abstract_controller/base.rb:154:in `process'
+actionview (8.1.4) lib/action_view/rendering.rb:40:in `process'
+actionpack (8.1.4) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (8.1.4) lib/action_controller/metal.rb:335:in `dispatch'
+actionpack (8.1.4) lib/action_dispatch/routing/route_set.rb:65:in `dispatch'
+actionpack (8.1.4) lib/action_dispatch/routing/route_set.rb:50:in `serve'
+actionpack (8.1.4) lib/action_dispatch/journey/router.rb:35:in `block in serve'
+actionpack (8.1.4) lib/action_dispatch/journey/router.rb:86:in `block in recognize'
+actionpack (8.1.4) lib/action_dispatch/journey/router.rb:66:in `each'
+actionpack (8.1.4) lib/action_dispatch/journey/router.rb:66:in `recognize'
+actionpack (8.1.4) lib/action_dispatch/journey/router.rb:31:in `serve'
+actionpack (8.1.4) lib/action_dispatch/routing/route_set.rb:906:in `call'
+railties (8.1.4) lib/rails/engine/lazy_route_set.rb:93:in `call'
+rack (3.2.7) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.2.7) lib/rack/etag.rb:29:in `call'
+rack (3.2.7) lib/rack/conditional_get.rb:31:in `call'
+rack (3.2.7) lib/rack/head.rb:15:in `call'
+actionpack (8.1.4) lib/action_dispatch/http/content_security_policy.rb:38:in `call'
+rack-session (2.1.2) lib/rack/session/abstract/id.rb:274:in `context'
+rack-session (2.1.2) lib/rack/session/abstract/id.rb:268:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/cookies.rb:708:in `call'
+activerecord (8.1.4) lib/active_record/migration.rb:671:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (8.1.4) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (8.1.4) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/executor.rb:20:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.3.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.3.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.3.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.3.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (8.1.4) lib/rails/rack/logger.rb:41:in `call_app'
+railties (8.1.4) lib/rails/rack/logger.rb:29:in `call'
+propshaft (1.3.2) lib/propshaft/quiet_assets.rb:11:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/remote_ip.rb:98:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/request_id.rb:34:in `call'
+rack (3.2.7) lib/rack/method_override.rb:28:in `call'
+rack (3.2.7) lib/rack/runtime.rb:24:in `call'
+activesupport (8.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:30:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (8.1.4) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (8.1.4) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/executor.rb:20:in `call'
+propshaft (1.3.2) lib/propshaft/server.rb:37:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.2.7) lib/rack/sendfile.rb:131:in `call'
+railties (8.1.4) lib/rails/engine.rb:534:in `call'
+rack-test (2.3.0) lib/rack/test.rb:375:in `process_request'
+rack-test (2.3.0) lib/rack/test.rb:153:in `request'
+actionpack (8.1.4) lib/action_dispatch/testing/integration.rb:298:in `process'
+actionpack (8.1.4) lib/action_dispatch/testing/integration.rb:19:in `get'
+railties (8.1.4) lib/rails/commands/runner/runner_command.rb:49:in `<main>'
+railties (8.1.4) lib/rails/commands/runner/runner_command.rb:49:in `eval'
+railties (8.1.4) lib/rails/commands/runner/runner_command.rb:49:in `block in perform'
+activesupport (8.1.4) lib/active_support/execution_wrapper.rb:91:in `wrap'
+railties (8.1.4) lib/rails/commands/runner/runner_command.rb:70:in `conditional_executor'
+railties (8.1.4) lib/rails/commands/runner/runner_command.rb:48:in `perform'
+thor (1.5.0) lib/thor/command.rb:28:in `run'
+thor (1.5.0) lib/thor/invocation.rb:127:in `invoke_command'
+railties (8.1.4) lib/rails/command/base.rb:176:in `invoke_command'
+thor (1.5.0) lib/thor.rb:538:in `dispatch'
+railties (8.1.4) lib/rails/command/base.rb:71:in `perform'
+railties (8.1.4) lib/rails/command.rb:65:in `block in invoke'
+railties (8.1.4) lib/rails/command.rb:143:in `with_argv'
+railties (8.1.4) lib/rails/command.rb:63:in `invoke'
+railties (8.1.4) lib/rails/commands.rb:18:in `<main>'
+/Users/shaheenghazala/.rbenv/versions/3.3.11/lib/ruby/3.3.0/bundled_gems.rb:69:in `require'
+/Users/shaheenghazala/.rbenv/versions/3.3.11/lib/ruby/3.3.0/bundled_gems.rb:69:in `block (2 levels) in replace_require'
+bootsnap (1.26.1) lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:33:in `require'
+bin/rails:4:in `<main>'
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+Started GET "/users/login" for 127.0.0.1 at 2026-10-30 15:32:36 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HospitalManagementSystem'*/[0m
+Processing by UsersController#login as HTML
+Completed 404 Not Found in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+AbstractController::ActionNotFound (The signup action could not be found for the :login_required
+callback on UsersController, but it is listed in the controller's
+:except option.
+
+Raising for missing callback actions is a new default in Rails 7.1, if you'd
+like to turn this off you can delete the option from the environment configurations
+or set `config.action_controller.raise_on_missing_callback_actions` to `false`.
+):
+  
+actionpack (8.1.4) lib/abstract_controller/callbacks.rb:64:in `match?'
+activesupport (8.1.4) lib/active_support/callbacks.rb:391:in `block in inverted_lambda'
+activesupport (8.1.4) lib/active_support/callbacks.rb:178:in `block in call'
+activesupport (8.1.4) lib/active_support/callbacks.rb:178:in `all?'
+activesupport (8.1.4) lib/active_support/callbacks.rb:178:in `call'
+activesupport (8.1.4) lib/active_support/callbacks.rb:560:in `block in invoke_before'
+activesupport (8.1.4) lib/active_support/callbacks.rb:560:in `each'
+activesupport (8.1.4) lib/active_support/callbacks.rb:560:in `invoke_before'
+activesupport (8.1.4) lib/active_support/callbacks.rb:109:in `run_callbacks'
+actionpack (8.1.4) lib/abstract_controller/callbacks.rb:266:in `process_action'
+actionpack (8.1.4) lib/action_controller/metal/rescue.rb:36:in `process_action'
+actionpack (8.1.4) lib/action_controller/metal/instrumentation.rb:76:in `block in process_action'
+activesupport (8.1.4) lib/active_support/notifications.rb:210:in `block in instrument'
+activesupport (8.1.4) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (8.1.4) lib/active_support/notifications.rb:210:in `instrument'
+actionpack (8.1.4) lib/action_controller/metal/instrumentation.rb:75:in `process_action'
+actionpack (8.1.4) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (8.1.4) lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+actionpack (8.1.4) lib/abstract_controller/base.rb:154:in `process'
+actionview (8.1.4) lib/action_view/rendering.rb:40:in `process'
+actionpack (8.1.4) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (8.1.4) lib/action_controller/metal.rb:335:in `dispatch'
+actionpack (8.1.4) lib/action_dispatch/routing/route_set.rb:65:in `dispatch'
+actionpack (8.1.4) lib/action_dispatch/routing/route_set.rb:50:in `serve'
+actionpack (8.1.4) lib/action_dispatch/journey/router.rb:35:in `block in serve'
+actionpack (8.1.4) lib/action_dispatch/journey/router.rb:86:in `block in recognize'
+actionpack (8.1.4) lib/action_dispatch/journey/router.rb:66:in `each'
+actionpack (8.1.4) lib/action_dispatch/journey/router.rb:66:in `recognize'
+actionpack (8.1.4) lib/action_dispatch/journey/router.rb:31:in `serve'
+actionpack (8.1.4) lib/action_dispatch/routing/route_set.rb:906:in `call'
+railties (8.1.4) lib/rails/engine/lazy_route_set.rb:93:in `call'
+rack (3.2.7) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.2.7) lib/rack/etag.rb:29:in `call'
+rack (3.2.7) lib/rack/conditional_get.rb:31:in `call'
+rack (3.2.7) lib/rack/head.rb:15:in `call'
+actionpack (8.1.4) lib/action_dispatch/http/content_security_policy.rb:38:in `call'
+rack-session (2.1.2) lib/rack/session/abstract/id.rb:274:in `context'
+rack-session (2.1.2) lib/rack/session/abstract/id.rb:268:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/cookies.rb:708:in `call'
+activerecord (8.1.4) lib/active_record/migration.rb:671:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (8.1.4) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (8.1.4) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/executor.rb:20:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.3.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.3.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.3.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.3.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (8.1.4) lib/rails/rack/logger.rb:41:in `call_app'
+railties (8.1.4) lib/rails/rack/logger.rb:29:in `call'
+propshaft (1.3.2) lib/propshaft/quiet_assets.rb:11:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/remote_ip.rb:98:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/request_id.rb:34:in `call'
+rack (3.2.7) lib/rack/method_override.rb:28:in `call'
+rack (3.2.7) lib/rack/runtime.rb:24:in `call'
+activesupport (8.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:30:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (8.1.4) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (8.1.4) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/executor.rb:20:in `call'
+propshaft (1.3.2) lib/propshaft/server.rb:37:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.2.7) lib/rack/sendfile.rb:131:in `call'
+railties (8.1.4) lib/rails/engine.rb:534:in `call'
+rack-test (2.3.0) lib/rack/test.rb:375:in `process_request'
+rack-test (2.3.0) lib/rack/test.rb:153:in `request'
+actionpack (8.1.4) lib/action_dispatch/testing/integration.rb:298:in `process'
+actionpack (8.1.4) lib/action_dispatch/testing/integration.rb:19:in `get'
+railties (8.1.4) lib/rails/commands/runner/runner_command.rb:49:in `<main>'
+railties (8.1.4) lib/rails/commands/runner/runner_command.rb:49:in `eval'
+railties (8.1.4) lib/rails/commands/runner/runner_command.rb:49:in `block in perform'
+activesupport (8.1.4) lib/active_support/execution_wrapper.rb:91:in `wrap'
+railties (8.1.4) lib/rails/commands/runner/runner_command.rb:70:in `conditional_executor'
+railties (8.1.4) lib/rails/commands/runner/runner_command.rb:48:in `perform'
+thor (1.5.0) lib/thor/command.rb:28:in `run'
+thor (1.5.0) lib/thor/invocation.rb:127:in `invoke_command'
+railties (8.1.4) lib/rails/command/base.rb:176:in `invoke_command'
+thor (1.5.0) lib/thor.rb:538:in `dispatch'
+railties (8.1.4) lib/rails/command/base.rb:71:in `perform'
+railties (8.1.4) lib/rails/command.rb:65:in `block in invoke'
+railties (8.1.4) lib/rails/command.rb:143:in `with_argv'
+railties (8.1.4) lib/rails/command.rb:63:in `invoke'
+railties (8.1.4) lib/rails/commands.rb:18:in `<main>'
+/Users/shaheenghazala/.rbenv/versions/3.3.11/lib/ruby/3.3.0/bundled_gems.rb:69:in `require'
+/Users/shaheenghazala/.rbenv/versions/3.3.11/lib/ruby/3.3.0/bundled_gems.rb:69:in `block (2 levels) in replace_require'
+bootsnap (1.26.1) lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:33:in `require'
+bin/rails:4:in `<main>'
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+Started GET "/users/login" for 127.0.0.1 at 2026-10-30 15:32:45 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HospitalManagementSystem'*/[0m
+Processing by UsersController#login as HTML
+Completed 404 Not Found in 5ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 4.6ms)
+
+
+  
+AbstractController::ActionNotFound (The signup action could not be found for the :login_required
+callback on UsersController, but it is listed in the controller's
+:except option.
+
+Raising for missing callback actions is a new default in Rails 7.1, if you'd
+like to turn this off you can delete the option from the environment configurations
+or set `config.action_controller.raise_on_missing_callback_actions` to `false`.
+):
+  
+actionpack (8.1.4) lib/abstract_controller/callbacks.rb:64:in `match?'
+activesupport (8.1.4) lib/active_support/callbacks.rb:391:in `block in inverted_lambda'
+activesupport (8.1.4) lib/active_support/callbacks.rb:178:in `block in call'
+activesupport (8.1.4) lib/active_support/callbacks.rb:178:in `all?'
+activesupport (8.1.4) lib/active_support/callbacks.rb:178:in `call'
+activesupport (8.1.4) lib/active_support/callbacks.rb:560:in `block in invoke_before'
+activesupport (8.1.4) lib/active_support/callbacks.rb:560:in `each'
+activesupport (8.1.4) lib/active_support/callbacks.rb:560:in `invoke_before'
+activesupport (8.1.4) lib/active_support/callbacks.rb:109:in `run_callbacks'
+actionpack (8.1.4) lib/abstract_controller/callbacks.rb:266:in `process_action'
+actionpack (8.1.4) lib/action_controller/metal/rescue.rb:36:in `process_action'
+actionpack (8.1.4) lib/action_controller/metal/instrumentation.rb:76:in `block in process_action'
+activesupport (8.1.4) lib/active_support/notifications.rb:210:in `block in instrument'
+activesupport (8.1.4) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (8.1.4) lib/active_support/notifications.rb:210:in `instrument'
+actionpack (8.1.4) lib/action_controller/metal/instrumentation.rb:75:in `process_action'
+actionpack (8.1.4) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (8.1.4) lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+actionpack (8.1.4) lib/abstract_controller/base.rb:154:in `process'
+actionview (8.1.4) lib/action_view/rendering.rb:40:in `process'
+actionpack (8.1.4) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (8.1.4) lib/action_controller/metal.rb:335:in `dispatch'
+actionpack (8.1.4) lib/action_dispatch/routing/route_set.rb:65:in `dispatch'
+actionpack (8.1.4) lib/action_dispatch/routing/route_set.rb:50:in `serve'
+actionpack (8.1.4) lib/action_dispatch/journey/router.rb:35:in `block in serve'
+actionpack (8.1.4) lib/action_dispatch/journey/router.rb:86:in `block in recognize'
+actionpack (8.1.4) lib/action_dispatch/journey/router.rb:66:in `each'
+actionpack (8.1.4) lib/action_dispatch/journey/router.rb:66:in `recognize'
+actionpack (8.1.4) lib/action_dispatch/journey/router.rb:31:in `serve'
+actionpack (8.1.4) lib/action_dispatch/routing/route_set.rb:906:in `call'
+railties (8.1.4) lib/rails/engine/lazy_route_set.rb:93:in `call'
+rack (3.2.7) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.2.7) lib/rack/etag.rb:29:in `call'
+rack (3.2.7) lib/rack/conditional_get.rb:31:in `call'
+rack (3.2.7) lib/rack/head.rb:15:in `call'
+actionpack (8.1.4) lib/action_dispatch/http/content_security_policy.rb:38:in `call'
+rack-session (2.1.2) lib/rack/session/abstract/id.rb:274:in `context'
+rack-session (2.1.2) lib/rack/session/abstract/id.rb:268:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/cookies.rb:708:in `call'
+activerecord (8.1.4) lib/active_record/migration.rb:671:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (8.1.4) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (8.1.4) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/executor.rb:20:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.3.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.3.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.3.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.3.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (8.1.4) lib/rails/rack/logger.rb:41:in `call_app'
+railties (8.1.4) lib/rails/rack/logger.rb:29:in `call'
+propshaft (1.3.2) lib/propshaft/quiet_assets.rb:11:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/remote_ip.rb:98:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/request_id.rb:34:in `call'
+rack (3.2.7) lib/rack/method_override.rb:28:in `call'
+rack (3.2.7) lib/rack/runtime.rb:24:in `call'
+activesupport (8.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:30:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (8.1.4) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (8.1.4) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/executor.rb:20:in `call'
+propshaft (1.3.2) lib/propshaft/server.rb:37:in `call'
+actionpack (8.1.4) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.2.7) lib/rack/sendfile.rb:131:in `call'
+railties (8.1.4) lib/rails/engine.rb:534:in `call'
+rack-test (2.3.0) lib/rack/test.rb:375:in `process_request'
+rack-test (2.3.0) lib/rack/test.rb:153:in `request'
+actionpack (8.1.4) lib/action_dispatch/testing/integration.rb:298:in `process'
+actionpack (8.1.4) lib/action_dispatch/testing/integration.rb:19:in `get'
+railties (8.1.4) lib/rails/commands/runner/runner_command.rb:49:in `<main>'
+railties (8.1.4) lib/rails/commands/runner/runner_command.rb:49:in `eval'
+railties (8.1.4) lib/rails/commands/runner/runner_command.rb:49:in `block in perform'
+activesupport (8.1.4) lib/active_support/execution_wrapper.rb:91:in `wrap'
+railties (8.1.4) lib/rails/commands/runner/runner_command.rb:70:in `conditional_executor'
+railties (8.1.4) lib/rails/commands/runner/runner_command.rb:48:in `perform'
+thor (1.5.0) lib/thor/command.rb:28:in `run'
+thor (1.5.0) lib/thor/invocation.rb:127:in `invoke_command'
+railties (8.1.4) lib/rails/command/base.rb:176:in `invoke_command'
+thor (1.5.0) lib/thor.rb:538:in `dispatch'
+railties (8.1.4) lib/rails/command/base.rb:71:in `perform'
+railties (8.1.4) lib/rails/command.rb:65:in `block in invoke'
+railties (8.1.4) lib/rails/command.rb:143:in `with_argv'
+railties (8.1.4) lib/rails/command.rb:63:in `invoke'
+railties (8.1.4) lib/rails/commands.rb:18:in `<main>'
+/Users/shaheenghazala/.rbenv/versions/3.3.11/lib/ruby/3.3.0/bundled_gems.rb:69:in `require'
+/Users/shaheenghazala/.rbenv/versions/3.3.11/lib/ruby/3.3.0/bundled_gems.rb:69:in `block (2 levels) in replace_require'
+bootsnap (1.26.1) lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:33:in `require'
+bin/rails:4:in `<main>'
