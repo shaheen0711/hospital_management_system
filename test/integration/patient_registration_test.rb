@@ -8,6 +8,10 @@ class PatientRegistrationTest < ActionDispatch::IntegrationTest
     assert_select "form", 1
     assert_select "input[name='patient[first_name]']"
     assert_select "input[name='patient[email]']"
+    assert_select "input[name='patient[blood_group]']"
+    assert_select ".actions input[type='submit']"
+    assert_select ".gender-field .radio-options input[type='radio']", 3
+    assert_select "a[href='#{login_users_path}']", text: "log in here."
   end
 
   test "visitor can register a patient profile" do

@@ -2,82 +2,73 @@
   <p class="flash_msg"><%= flash[:notice] %></p>
 <% end %>
 <br>
-<p>Already registered? You can <a href="users/login">log in here.</a></p>
+<p>Already registered? You can <%= link_to "log in here.", login_users_path %></p>
 <div class="register">
   <%= form_with model: @patient, multipart: true, local: true do |f| %>
-      <% if @patient.errors.any? %>
-        <div class="errors">
-          <ul>
-            <% @patient.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-      <div class="form-group">
-          <label class="control-label col-sm-2">First name<span class ="star">*</span>:</label>
-          <div class="col-sm-4">
-              <%= f.text_field :first_name,  :class => "form-control", :placeholder => "enter first name"%>
-          </div>
+    <% if @patient.errors.any? %>
+      <div class="errors">
+        <ul>
+          <% @patient.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
       </div>
-      <div class="form-group">
-          <label class="control-label col-sm-2">Last name<span class ="star">*</span>:</label>
-          <div class="col-sm-4">
-              <%= f.text_field :last_name, :class => "form-control" , :placeholder => "enter last name"%>
-          </div>
-      </div>
-      <div class="form-group">
-              <label class="control-label col-sm-2">Date of birth<span class ="star">*</span>:</label>
-              <div class="col-sm-4">
-                  <div class='input-group date' id='datetimepicker3'>
-                      <%= f.date_field :date_of_birth, class: "form-control" %>
-                  </div>
-              </div>
-          </div>
-      <div class="form-group">
-          <label class="control-label col-sm-2">Contact number<span class ="star">*</span>:</label>
-          <div class="col-sm-4">
-              <%= f.text_field :contact_number, :class => "form-control" , :placeholder => "enter contact number" %>
-          </div>
-      </div>
-      <div class="form-group">
-          <label class="control-label col-sm-2">Address:</label>
-          <div class="col-sm-4">
-              <%= f.text_field :address, :class => "form-control" , :placeholder => "enter address"%>
-          </div>
-      </div>
+    <% end %>
 
-      <div class="form-group">
-          <label class="control-label col-sm-2">Email:</label>
-          <div class="col-sm-4">
-              <%= f.text_field :email, :class => "form-control" , :placeholder => "abc@email.com"%>
-          </div>
-      </div>
+    <div class="field">
+      <%= f.label :first_name do %>First name<span class="star">*</span><% end %>
+      <%= f.text_field :first_name, placeholder: "Enter first name" %>
+    </div>
 
-      <div class="form-group">
-          <label class="control-label col-sm-2">Gender<span class ="star">*</span>:</label>
-          <div class="col-sm-4">
-              <%= f.label :gender, "female", :value => "female" %>
-              <%= f.radio_button :gender, "female" %>
-              <%= f.label :gender, "male", :value => "male" %>
-              <%= f.radio_button :gender, "male" %>
-              <%= f.label :gender, "other", :value => "other" %>
-              <%= f.radio_button :gender, "other" %>
-          </div>
+    <div class="field">
+      <%= f.label :last_name do %>Last name<span class="star">*</span><% end %>
+      <%= f.text_field :last_name, placeholder: "Enter last name" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :date_of_birth do %>Date of birth<span class="star">*</span><% end %>
+      <%= f.date_field :date_of_birth %>
+    </div>
+
+    <div class="field">
+      <%= f.label :contact_number do %>Contact number<span class="star">*</span><% end %>
+      <%= f.telephone_field :contact_number, placeholder: "Enter contact number" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :address %>
+      <%= f.text_field :address, placeholder: "Enter address" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.email_field :email, placeholder: "name@example.com" %>
+    </div>
+
+    <fieldset class="field gender-field">
+      <legend>Gender<span class="star">*</span></legend>
+      <div class="radio-options">
+        <% %w[female male other].each do |gender| %>
+          <label class="radio-option">
+            <%= f.radio_button :gender, gender %>
+            <%= gender.humanize %>
+          </label>
+        <% end %>
       </div>
-    <div class="form-group">
-          <label class="control-label col-sm-2">Upload photo:</label>
-          <div class="col-sm-4">
-              <%= f.file_field :photo%>
-          </div>
-      </div>
-   
-      <div class="form-group">
-          <label class="control-label col-sm-2">Blood group<span class ="star">*</span>:</label>
-          <div class="col-sm-4">
-              <%= f.text_field :blood_group, :class => "form-control" , :placeholder => "A+"%><br>
-              <%= f.submit "register" , :class => "btn btn-success"%><br>
-          </div>
-      </div>
-    <%  end %>
+    </fieldset>
+
+    <div class="field">
+      <%= f.label :photo, "Upload photo" %>
+      <%= f.file_field :photo %>
+    </div>
+
+    <div class="field">
+      <%= f.label :blood_group do %>Blood group<span class="star">*</span><% end %>
+      <%= f.text_field :blood_group, placeholder: "e.g. O+" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Register", class: "btn btn-success" %>
+    </div>
+  <% end %>
 </div>

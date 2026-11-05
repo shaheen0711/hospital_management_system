@@ -1,10 +1,291 @@
 /*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
+ * Application styles for the legacy Rails views.
  */
+
+:root {
+  color-scheme: light;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #172033;
+  background: #f3f6fb;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  padding: 32px;
+  background: linear-gradient(135deg, #f3f6fb 0%, #e8eff9 100%);
+  line-height: 1.5;
+}
+
+a {
+  color: #1769aa;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #0e4e83;
+  text-decoration: underline;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin-top: 0;
+  color: #152642;
+}
+
+.login,
+.register,
+.container,
+body > table {
+  width: min(100%, 960px);
+  margin: 32px auto;
+  padding: 28px;
+  border: 1px solid #dce5f0;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 12px 32px rgb(29 55 90 / 8%);
+}
+
+.login {
+  width: min(100%, 460px);
+  padding: 32px;
+  color: #26364d;
+  text-align: left;
+}
+
+.login form {
+  display: grid;
+  gap: 16px;
+}
+
+.register form {
+  display: grid;
+  gap: 18px;
+}
+
+.register .field {
+  min-width: 0;
+  margin: 0;
+}
+
+.login .field,
+.register .field {
+  width: 100%;
+  max-width: none;
+  padding: 0;
+}
+
+.register .gender-field {
+  min-width: 0;
+  padding: 0;
+  border: 0;
+}
+
+.register .gender-field legend {
+  margin-bottom: 8px;
+  color: #35445c;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.radio-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+
+.radio-option {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 8px;
+  margin: 0 !important;
+  font-weight: 400 !important;
+}
+
+.radio-option input[type="radio"] {
+  margin: 0;
+}
+
+.register input[type="file"] {
+  width: 100%;
+  min-height: 42px;
+  padding: 7px;
+  border: 1px solid #cbd6e4;
+  border-radius: 7px;
+  background: #fff;
+  font: inherit;
+}
+
+.register .actions {
+  margin-top: 2px;
+}
+
+.login .actions {
+  margin-top: 2px;
+}
+
+.login .actions input[type="submit"] {
+  width: 100%;
+}
+
+.login label,
+.register label,
+.container label {
+  display: block;
+  margin-bottom: 6px;
+  color: #35445c;
+  font-weight: 600;
+}
+
+.register .gender-field label {
+  display: inline-flex;
+}
+
+input:not([type="radio"]):not([type="checkbox"]):not([type="submit"]),
+select,
+textarea {
+  width: 100%;
+  min-height: 42px;
+  padding: 9px 12px;
+  border: 1px solid #cbd6e4;
+  border-radius: 7px;
+  background: #fff;
+  color: #172033;
+  font: inherit;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #4285c5;
+  outline: 3px solid rgb(66 133 197 / 18%);
+}
+
+input[type="submit"],
+button,
+.btn {
+  display: inline-block;
+  min-height: 40px;
+  padding: 9px 16px;
+  border: 0;
+  border-radius: 7px;
+  background: #1769aa;
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover,
+button:hover,
+.btn:hover {
+  background: #105487;
+  color: #fff;
+  text-decoration: none;
+}
+
+.reg,
+.profile,
+.search {
+  float: none;
+  text-align: right;
+}
+
+.flash_msg {
+  width: min(100%, 760px);
+  min-height: 0;
+  margin: 16px auto;
+  padding: 12px 16px;
+  border: 1px solid #f0c36d;
+  border-radius: 8px;
+  background: #fff8e6;
+  color: #684c12;
+  text-align: left;
+}
+
+.errors {
+  padding: 12px 16px;
+  border: 1px solid #e8a7a7;
+  border-radius: 8px;
+  background: #fff1f1;
+  color: #842029;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+th,
+td {
+  padding: 11px 14px;
+  border: 1px solid #dce5f0;
+  text-align: left;
+}
+
+th {
+  background: #edf3fa;
+  color: #233750;
+}
+
+.manage_department,
+.manage_room,
+.manage_doctor,
+.manage_patient,
+.medical_records,
+.book_appointment_main {
+  float: none;
+  display: inline-block;
+  width: min(100%, 260px);
+  margin: 12px;
+  padding: 18px;
+  border: 1px solid #dce5f0;
+  border-radius: 10px;
+  background: #fff;
+  vertical-align: top;
+}
+
+.manage_department,
+.manage_room,
+.manage_doctor,
+.manage_patient {
+  box-shadow: 0 6px 18px rgb(29 55 90 / 6%);
+}
+
+.star {
+  color: #c62828;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 16px;
+  }
+
+  .login,
+  .register,
+  .container,
+  body > table {
+    margin: 18px auto;
+    padding: 20px;
+  }
+
+  .manage_department,
+  .manage_room,
+  .manage_doctor,
+  .manage_patient,
+  .medical_records,
+  .book_appointment_main {
+    width: 100%;
+    margin: 8px 0;
+  }
+}
