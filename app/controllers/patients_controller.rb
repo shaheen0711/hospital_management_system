@@ -26,7 +26,7 @@ class PatientsController < ApplicationController
   
   def create
     if request.post?
-      @patient = Patient.new(params[:patient])
+      @patient = Patient.new(patient_params)
       if @patient.save   
         redirect_to @patient
         flash[:notice] = "Welcome, Your account is created now you can login"
@@ -93,4 +93,12 @@ class PatientsController < ApplicationController
     redirect_to patients_path
   end
 
+  private
+
+  def patient_params
+    params.require(:patient).permit(
+      :first_name, :last_name, :date_of_birth, :contact_number,
+      :address, :email, :gender, :blood_group, :photo
+    )
+  end
 end

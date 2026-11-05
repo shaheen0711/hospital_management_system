@@ -1,9 +1,12 @@
 require 'test_helper'
-require 'performance_test_help'
 
-# Profiling results for each test method are written to tmp/performance.
-class BrowsingTest < ActionController::PerformanceTest
-  def test_homepage
-    get '/'
+class BrowsingTest < ActionDispatch::IntegrationTest
+  test "health check and login page are available" do
+    get rails_health_check_path
+    assert_response :success
+
+    get login_users_path
+    assert_response :success
+    assert_select "form[action='#{login_users_path}']"
   end
 end

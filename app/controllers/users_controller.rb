@@ -17,8 +17,6 @@ class UsersController < ApplicationController
       else
         flash.now[:notice] = "Invalid Username or password."       
       end
-    else
-      p "000"
     end    
   end
 
@@ -26,7 +24,7 @@ class UsersController < ApplicationController
     @user = User.new
 
     if request.post?
-      @user = User.new(params[:user])
+      @user = User.new(user_params)
       @user.user_type = "patient"
       if @user.save
         flash[:notice] = "Registration successful. Please log in."
@@ -68,7 +66,9 @@ class UsersController < ApplicationController
     end
   end
 
+  private
 
-  
- 
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :username, :password)
+  end
 end

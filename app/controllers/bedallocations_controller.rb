@@ -31,10 +31,12 @@ class BedallocationsController < ApplicationController
     # @beds = Bed.find(:all , "SELECT id , bed_number from beds where beds.id not in 
     #(select bed_id from bedallocations where bedallocations.bed_id = beds.id) group by beds.id")")
 
-    @beds = Bed.find_by_sql("SELECT beds.id, beds.bed_number from beds
-inner join rooms ON
-beds.room_id = rooms.id
-where  room_id = #{(params[:id])} and beds.id not in (select bed_id from bedallocations where bedallocations.bed_id = beds.id) group by beds.id")
+    allocated_bed_ids = Bedallocation.select(:bed_id)
+    @beds = Bed.joins(:room)
+               .where(room_id: params[:id])
+               .where.not(id: allocated_bed_ids)
+               .select(:id, :bed_number)
+               .distinct
 
     #   @beds = Bed.find(params[:id], :condition => "SELECT id , bed_number from beds where beds.id not in (select bed_id from bedallocations where bedallocations.bed_id = beds.id) group by beds.id ", :include => :room)
     render :update do |page|

@@ -12,7 +12,7 @@ class Patient < ActiveRecord::Base
   validates_presence_of  :first_name
   validates_presence_of  :last_name
 
-  belongs_to  :user  #:select => "first_name"
+  belongs_to  :user, optional: true
   has_many    :appointments
   has_many  :medicalrecords
   has_one   :bedallocation
